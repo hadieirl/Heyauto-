@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Finder</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+        html{
+            background:#070709;
+            height:100%;
+        }
+        body{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            padding:20px;
+            background:#070709;
+            min-height:100vh;
+            overflow-x:hidden;
+            color:white;
+            position: relative;
+        }
+
+        /* INTENSIFIED NEON BACKDROP AURORAS */
+        .ambient-glow-1 {
+            position: fixed;
+            top: -150px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            /* High-saturation gradient with an electric gold center */
+            background: radial-gradient(circle, rgba(255, 193, 7, 0.28) 0%, rgba(255, 179, 0, 0.08) 45%, rgba(0,0,0,0) 70%);
+            filter: blur(50px);
+            z-index: 0;
+            pointer-events: none;
+            animation: pulseGlow 8s infinite alternate ease-in-out;
+        }
+
+        .ambient-glow-2 {
+            position: fixed;
+            bottom: -50px;
+            right: -150px;
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(255, 193, 7, 0.28) 0%, rgba(255, 179, 0, 0.08) 45%, rgba(0,0,0,0)70%);
+            filter: blur(60px);
+            z-index: 0;
+            pointer-events: none;
+            animation: pulseGlow 12s infinite alternate-reverse ease-in-out;
+        }
+
+        /* Subtle ambient breathing animation for the background lights */
+        @keyframes pulseGlow {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+            100% { transform: scale(1.15) translate(20px, 10px); opacity: 1; }
+        }
+
+        /* DROPDOWN WITH LUMINESCENT BORDER */
+        #location{
+            margin-top:85px;
+            width:260px;
+            padding:14px 16px;
+            font-size:15px;
+            border-radius:14px;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            background: rgba(18, 18, 22, 0.75);
+            backdrop-filter: blur(12px);
+            color:white;
+            outline:none;
+            cursor:pointer;
+            transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 1;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        #location:hover{
+            border-color: #FFC107;
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.3); /* Neon outer hover glow */
+        }
+
+        /* MAIN CARD WITH SYNTHWAVE EDGE GLOW */
+        .app{
+            position: relative;
+            margin-top:110px;
+            width:100%;
+            max-width:420px;
+            background: rgba(16, 16, 20, 0.85);
+            backdrop-filter: blur(25px);
+            
+            /* High-definition vibrant edge border */
+            border: 1px solid rgba(255, 193, 7, 0.25);
+            border-radius:24px;
+            padding:28px;
+            
+            /* Massive composite shadow stack containing a bright structural neon glow halo */
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.8),
+                0 0 50px rgba(255, 193, 7, 0.08); 
+            z-index: 2;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        /* When active, amplify the main card's structural halo */
+        .app:hover {
+            border-color: rgba(255, 193, 7, 0.4);
+            box-shadow: 
+                0 35px 70px rgba(0,0,0,0.85),
+                0 0 60px rgba(255, 193, 7, 0.15);
+        }
+
+        /* HEADER TEXT LUMINESCENCE */
+        .appi{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:10px;
+        }
+        .riksha{
+            margin-top: -25px;
+            /* Filter injects a bright yellow vector projection halo around your custom logo */
+            filter: drop-shadow(0 4px 12px rgba(255, 193, 7, 0.4));
+        }
+        .hey{
+            font-size:22px;
+            font-weight:700;
+            color:#FFC107;
+            /* Rich text neon illumination */
+            text-shadow: 0 0 12px rgba(255, 193, 7, 0.65), 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* PRIMARY NEON ACTION BUTTON */
+        button{
+            width:100%;
+            margin-top:18px;
+            padding:14px;
+            border:none;
+            border-radius:14px;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        #findBtn{
+            background: linear-gradient(135deg, #FFD54F, #FFC107, #FFA000);
+            color: #050507;
+            box-shadow: 0 4px 20px rgba(255, 193, 7, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #findBtn:hover{
+            transform: translateY(-2px);
+            /* Intensely brightened button halo on interactive focus */
+            box-shadow: 0 0 30px rgba(255, 193, 7, 0.65);
+        }
+
+        /* RESULT BANNER */
+        #result{
+            margin-top:25px;
+            font-size:14px;
+            color:#b0b0b8;
+            text-align:center;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+        }
+
+        #result::before,
+        #result::after{
+            content:"";
+            width:25px;
+            height:2px;
+            background: linear-gradient(90deg, transparent, #FFC107);
+            display:inline-block;
+            margin:0 8px;
+            vertical-align: middle;
+            box-shadow: 0 0 8px #FFC107;
+        }
+        #result::after {
+            background: linear-gradient(270deg, transparent, #FFC107);
+        }
+
+        #resulted{
+            margin-top:15px;
+            width:100%;
+            max-width:420px;
+        }
+
+        /* HIGH-GLOW DRIVER RESULT CARDS */
+        .driver-card{
+            background: rgba(20, 20, 26, 0.8);
+            backdrop-filter: blur(12px);
+            margin-bottom:14px;
+            padding:18px;
+            border-radius:18px;
+            border: 1px solid rgba(255, 193, 7, 0.18);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position:relative;
+            transition: 0.3s ease;
+            z-index: 2;
+        }
+
+        .driver-card:hover{
+            transform: translateY(-4px);
+            border-color: rgba(255, 193, 7, 0.5);
+            /* The result card generates an active glow aura when user inspects it */
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 193, 7, 0.15);
+        }
+
+        .driver-banner{
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:5px;
+            background: linear-gradient(90deg, #FFC107, #FF7043);
+            box-shadow: 0 2px 10px rgba(255, 193, 7, 0.4);
+            border-top-left-radius:18px;
+            border-top-right-radius:18px;
+        }
+
+        .driver-card h3{
+            color:#FFC107;
+            margin-bottom:8px;
+            margin-top:6px;
+            text-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+        }
+
+        .driver-card p{
+            color:#ddd;
+            font-size:14px;
+            margin:6px 0;
+        }
+
+        .driver-card a{
+            color:#4dabf7;
+            text-decoration:none;
+            text-shadow: 0 0 10px rgba(77, 171, 247, 0.2);
+        }
+
+        .driver-card a:hover{
+            text-decoration:underline;
+            text-shadow: 0 0 12px rgba(77, 171, 247, 0.5);
+        }
+
+        .not-found{
+            text-align:center;
+            color:#aaa;
+            margin-top:20px;
+        }
+        
+        h1{
+            text-align:center;
+            color:#FCC107;
+            margin-bottom:20px;
+            text-shadow: 0 0 15px rgba(254, 193, 7, 0.4);
+        }
+
+        input, #place{
+            width:100%;
+            padding:12px;
+            margin-bottom:5px;
+            border-radius:12px;
+            border:1px solid rgba(255,255,255,0.08);
+            background:rgba(30, 30, 36, 0.6);
+            color:white;
+            outline:none;
+            transition: 0.3s;
+        }
+
+        input:focus{
+            border-color:#FFC107;
+            background:rgba(30, 30, 36, 0.9);
+            box-shadow: 0 0 15px rgba(255, 193, 7, 0.15);
+        }
+
+        .error{
+            color:#ff4d4d;
+            font-size:12px;
+            margin:0 0 10px 4px;
+            height:14px;
+        }
+
+        /* PAGE VIEWS WITH TRANSITIONS */
+        #customerPage, #driverPage {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+
+        #customerPage.active-view, #driverPage.active-view {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* CURVY NAV WITH RADIANT INTENSIFIED CAPSULE */
+        .bottom-nav-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 380px;
+            background: rgba(18, 18, 22, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 6px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+            z-index: 10;
+        }
+
+        .bottom-nav{
+            display:flex;
+            position: relative;
+            width: 100%;
+            height: 48px;
+        }
+
+        .bottom-nav button{
+            flex:1;
+            margin-top:0;
+            border:none;
+            background:none;
+            color:#9a9ab0;
+            font-size:15px;
+            position:relative;
+            z-index: 2;
+            height: 100%;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease, transform 0.1s ease;
+        }
+
+        .bottom-nav button:active {
+            transform: scale(0.95);
+        }
+
+        .bottom-nav button.active-tab {
+            color: #050507;
+            font-weight: 800;
+        }
+
+        .nav-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%; 
+            height: 100%;
+            background: linear-gradient(135deg, #FFEB3B, #FFC107, #FF9800);
+            border-radius: 25px;
+            /* High-intensity outer glow for the active nav item */
+            box-shadow: 0 0 25px rgba(255, 193, 7, 0.6);
+            z-index: 1;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="ambient-glow-1"></div>
+<div class="ambient-glow-2"></div>
+                                                                    
+<div id="customerPage" class="active-view">
+    <select id="location">
+        <option selected>Kizhisseri</option>
+        <option>Kondotty</option>
+        <option>Mongam</option>
+        <option>Areekode</option>
+        <option>Ramanatukara</option>
+        <option>Coimbature</option>
+    </select>
+
+    <div class="app">
+        <div class="appi">
+            <img class="riksha" style="width:45px;height:45px;" src="mirrored.PNG" alt="Logo">
+            <h1 class="hey">ഹേയ് ഓട്ടോ!</h1>
+        </div>
+        <button id="findBtn">Find Auto</button>
+    </div>
+
+    <p id="result">Showing autos at : Kizhisseri</p>
+    <div id="resulted"></div>
+</div>
+
+
+<div id="driverPage" style="display: none;">
+    <div class="app">
+        <h1>ഓട്ടോക്കാരൻ!</h1>
+
+        <input type="text" id="name" placeholder="Driver Name">
+        <div class="error" id="nameError"></div>
+
+        <input type="text" id="phone" placeholder="10 digit phone number">
+        <div class="error" id="phoneError"></div>
+
+        <input type="text" id="plate" placeholder="Vehicle Number (KL 01 AB 1234)">
+        <div class="error" id="plateError"></div>
+
+        <select id="place">
+            <option>Kizhisseri</option>
+            <option>Kondotty</option>
+            <option>Mongam</option>
+            <option>Areekode</option>
+            <option>Ramanatukara</option>
+            <option>Coimbature</option>
+        </select>
+
+        <button onclick="addDriver()">Upload Driver</button>
+    </div>
+</div>
+
+<div class="bottom-nav-container">
+    <div class="bottom-nav">
+        <div class="nav-slider" id="navSlider"></div>
+
+        <button id="customerBtn" class="active-tab">
+            🚕 Customer
+        </button>
+
+        <button id="driverBtn">
+            👨‍✈️ Driver
+        </button>
+    </div>
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    addDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB4uGZ9g3ju9qAFg7OW-OfBy9Pf1-UfE1E",
+  authDomain: "heyautoapp-55dae.firebaseapp.com",
+  projectId: "heyautoapp-55dae",
+  storageBucket: "heyautoapp-55dae.firebasestorage.app",
+  messagingSenderId: "746327412038",
+  appId: "1:746327412038:web:0a9b0fe55893f3f71ee947",
+  measurementId: "G-0FPHR4SYPB"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const locationSelect = document.getElementById("location");
+const result = document.getElementById("result");
+const findBtn = document.getElementById("findBtn");
+const resulted = document.getElementById("resulted");
+
+findBtn.addEventListener("click", async () => {
+    const selectedLocation = locationSelect.value;
+    result.textContent = "Showing autos at : " + selectedLocation;
+    resulted.innerHTML = "";
+
+    try {
+        const snapshot = await getDocs(collection(db, "Drivers"));
+        const drivers = [];
+
+        snapshot.forEach(doc => {
+            drivers.push(doc.data());
+        });
+
+        const filteredDrivers = drivers.filter(driver => driver.place === selectedLocation);
+
+        if(filteredDrivers.length === 0){
+            resulted.innerHTML = `<p class="not-found">No autos available in this location.</p>`;
+            return;
+        }
+
+        filteredDrivers.forEach(driver => {
+            const card = document.createElement("div");
+            card.classList.add("driver-card");
+            card.innerHTML = `
+                <div class="driver-banner"></div>
+                <h3>👤 ${driver.name}</h3>
+                <p><a href="tel:${driver.phone}">📞 ${driver.phone}</a></p>
+                <p>📍 ${driver.place}</p>
+                <p>🚕 <strong>Number Plate:</strong> ${driver.plate}</p>
+            `;
+            resulted.appendChild(card);
+        });
+
+    } catch(error) {
+        console.error(error);
+        resulted.innerHTML = `<p class="not-found">Failed to load drivers.</p>`;
+    }
+});
+
+window.addDriver = async function() {
+    const name = document.getElementById("name");
+    const phone = document.getElementById("phone");
+    const plate = document.getElementById("plate");
+    const place = document.getElementById("place");
+
+    const nameError = document.getElementById("nameError");
+    const phoneError = document.getElementById("phoneError");
+    const plateError = document.getElementById("plateError");
+
+    let valid = true;
+
+    nameError.textContent = "";
+    phoneError.textContent = "";
+    plateError.textContent = "";
+
+    if(name.value.trim() === ""){
+        nameError.textContent = "This field is required";
+        valid = false;
+    }
+
+    const phoneValue = phone.value.trim();
+    if(phoneValue === ""){
+        phoneError.textContent = "This field is required";
+        valid = false;
+    } else if(!/^\d{10}$/.test(phoneValue)){
+        phoneError.textContent = "Enter exactly 10 digits";
+        valid = false;
+    }
+
+    const plateValue = plate.value.trim();
+    const platePattern = /^[A-Z]{2}\s?\d{2}\s?[A-Z]{1,2}\s?\d{1,4}$/;
+
+    if(plateValue === ""){
+        plateError.textContent = "This field is required";
+        valid = false;
+    } else if(!platePattern.test(plateValue.toUpperCase())){
+        plateError.textContent = "Enter valid format like KL 01 AB 1234";
+        valid = false;
+    }
+
+    if(!valid) return;
+
+    try {
+        await addDoc(collection(db, "Drivers"), {
+            name: name.value.trim(),
+            phone: phoneValue,
+            plate: plateValue.toUpperCase(),
+            place: place.value
+        });
+
+        alert("Driver uploaded successfully!");
+        name.value = "";
+        phone.value = "";
+        plate.value = "";
+    } catch(error) {
+        console.error(error);
+        alert("Upload failed");
+    }
+};
+
+const customerPage = document.getElementById("customerPage");
+const driverPage = document.getElementById("driverPage");
+const customerBtn = document.getElementById("customerBtn");
+const driverBtn = document.getElementById("driverBtn");
+const navSlider = document.getElementById("navSlider");
+
+driverBtn.addEventListener("click", () => {
+    customerPage.classList.remove("active-view");
+    
+    setTimeout(() => {
+        customerPage.style.display = "none";
+        driverPage.style.display = "flex";
+        void driverPage.offsetWidth; 
+        driverPage.classList.add("active-view");
+    }, 200);
+
+    navSlider.style.transform = "translateX(100%)";
+    driverBtn.classList.add("active-tab");
+    customerBtn.classList.remove("active-tab");
+});
+
+customerBtn.addEventListener("click", () => {
+    driverPage.classList.remove("active-view");
+
+    setTimeout(() => {
+        driverPage.style.display = "none";
+        customerPage.style.display = "flex";
+        void customerPage.offsetWidth; 
+        customerPage.classList.add("active-view");
+    }, 200);
+
+    navSlider.style.transform = "translateX(0%)";
+    customerBtn.classList.add("active-tab");
+    driverBtn.classList.remove("active-tab");
+});
+
+</script>
+</body>
+</html>
