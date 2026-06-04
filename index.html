@@ -632,7 +632,7 @@
 <div class="bottom-nav-container">
     <div class="bottom-nav">
         <div class="nav-slider" id="navSlider"></div>
-        <button id="customerBtn" class="active-tab">🚕 Customer</button>
+        <button id="customerBtn" class="active-tab">🛺 Passenger</button>
         <button id="driverBtn">👨‍✈️ Driver</button>
     </div>
 </div>
@@ -957,10 +957,16 @@ async function loadAllDrivers() {
         const snapshot = await getDocs(collection(db, "Drivers"));
         const drivers = [];
 
-        snapshot.forEach(doc => {
-            drivers.push(doc.data());
-        });
+     snapshot.forEach(doc => {
+    const driver = doc.data();
 
+    if (
+        driver.place &&
+        driver.place.toLowerCase() === selectedLocation.toLowerCase()
+    ) {
+        drivers.push(driver);
+    }
+});
         if(drivers.length === 0){
             resulted.innerHTML = `<p class="not-found">No drivers registered on the system yet.</p>`;
             return;
