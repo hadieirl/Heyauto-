@@ -35,7 +35,6 @@
             left: -100px;
             width: 500px;
             height: 500px;
-            /* High-saturation gradient with an electric gold center */
             background: radial-gradient(circle, rgba(255, 193, 7, 0.28) 0%, rgba(255, 179, 0, 0.08) 45%, rgba(0,0,0,0) 70%);
             filter: blur(50px);
             z-index: 0;
@@ -56,7 +55,6 @@
             animation: pulseGlow 12s infinite alternate-reverse ease-in-out;
         }
 
-        /* Subtle ambient breathing animation for the background lights */
         @keyframes pulseGlow {
             0% { transform: scale(1) translate(0, 0); opacity: 0.8; }
             100% { transform: scale(1.15) translate(20px, 10px); opacity: 1; }
@@ -84,7 +82,7 @@
         #location:hover{
             border-color: #FFC107;
             transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(255, 193, 7, 0.3); /* Neon outer hover glow */
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.3);
         }
 
         /* MAIN CARD WITH SYNTHWAVE EDGE GLOW */
@@ -95,29 +93,19 @@
             max-width:420px;
             background: rgba(16, 16, 20, 0.85);
             backdrop-filter: blur(25px);
-            
-            /* High-definition vibrant edge border */
             border: 1px solid rgba(255, 193, 7, 0.25);
             border-radius:24px;
             padding:28px;
-            
-            /* Massive composite shadow stack containing a bright structural neon glow halo */
-            box-shadow: 
-                0 30px 60px rgba(0,0,0,0.8),
-                0 0 50px rgba(255, 193, 7, 0.08); 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 50px rgba(255, 193, 7, 0.08); 
             z-index: 2;
             transition: border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
-        /* When active, amplify the main card's structural halo */
         .app:hover {
             border-color: rgba(255, 193, 7, 0.4);
-            box-shadow: 
-                0 35px 70px rgba(0,0,0,0.85),
-                0 0 60px rgba(255, 193, 7, 0.15);
+            box-shadow: 0 35px 70px rgba(0,0,0,0.85), 0 0 60px rgba(255, 193, 7, 0.15);
         }
 
-        /* HEADER TEXT LUMINESCENCE */
         .appi{
             display:flex;
             align-items:center;
@@ -126,18 +114,15 @@
         }
         .riksha{
             margin-top: -25px;
-            /* Filter injects a bright yellow vector projection halo around your custom logo */
             filter: drop-shadow(0 4px 12px rgba(255, 193, 7, 0.4));
         }
         .hey{
             font-size:22px;
             font-weight:700;
             color:#FFC107;
-            /* Rich text neon illumination */
             text-shadow: 0 0 12px rgba(255, 193, 7, 0.65), 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* PRIMARY NEON ACTION BUTTON */
         button{
             width:100%;
             margin-top:18px;
@@ -150,21 +135,117 @@
             transition:0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        #findBtn{
+        #findBtn, .action-btn {
             background: linear-gradient(135deg, #FFD54F, #FFC107, #FFA000);
             color: #050507;
             box-shadow: 0 4px 20px rgba(255, 193, 7, 0.3);
-            position: relative;
-            overflow: hidden;
         }
 
-        #findBtn:hover{
+        #findBtn:hover, .action-btn:hover{
             transform: translateY(-2px);
-            /* Intensely brightened button halo on interactive focus */
             box-shadow: 0 0 30px rgba(255, 193, 7, 0.65);
         }
 
-        /* RESULT BANNER */
+        .secondary-btn {
+            background: rgba(30, 30, 36, 0.6);
+            color: #FFC107;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            margin-top: 10px;
+        }
+
+        .secondary-btn:hover {
+            background: rgba(30, 30, 36, 0.9);
+            border-color: #FFC107;
+        }
+
+        .danger-btn {
+            background: rgba(244, 67, 54, 0.1);
+            color: #f44336;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            margin-top: 10px;
+        }
+
+        .danger-btn:hover {
+            background: rgba(244, 67, 54, 0.25);
+            border-color: #f44336;
+            box-shadow: 0 0 15px rgba(244, 67, 54, 0.2);
+        }
+
+        /* TOGGLE SELECTION COMPONENT FOR ACTIVE STATUS */
+        .status-container {
+            margin: 15px 0;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .status-label {
+            font-size: 13px;
+            color: #b0b0b8;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .status-selector {
+            display: flex;
+            background: #121216;
+            padding: 4px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,193,7,0.1);
+        }
+
+        .status-option {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s ease;
+            color: #777785;
+        }
+
+        .status-option.selected-active {
+            background: #4CAF50;
+            color: white;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .status-option.selected-inactive {
+            background: #f44336;
+            color: white;
+            box-shadow: 0 0 15px rgba(244, 67, 54, 0.4);
+        }
+
+        /* CUSTOMER APP BADGES FOR DRIVER STATUS */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .badge-active {
+            background: rgba(76, 175, 80, 0.15);
+            color: #4CAF50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.1);
+        }
+
+        .badge-inactive {
+            background: rgba(244, 67, 54, 0.15);
+            color: #f44336;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+
         #result{
             margin-top:25px;
             font-size:14px;
@@ -173,8 +254,7 @@
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
         }
 
-        #result::before,
-        #result::after{
+        #result::before, #result::after{
             content:"";
             width:25px;
             height:2px;
@@ -192,9 +272,9 @@
             margin-top:15px;
             width:100%;
             max-width:420px;
+            padding-bottom: 100px; 
         }
 
-        /* HIGH-GLOW DRIVER RESULT CARDS */
         .driver-card{
             background: rgba(20, 20, 26, 0.8);
             backdrop-filter: blur(12px);
@@ -208,12 +288,70 @@
             z-index: 2;
         }
 
+        /* FUEL-SPECIFIC INJECTED VISUAL STYLES */
+        .card-cng {
+            border: 1px solid rgba(76, 175, 80, 0.4) !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(76, 175, 80, 0.05);
+        }
+        .card-cng .driver-banner {
+            background: linear-gradient(90deg, #4CAF50, #81C784) !important;
+            box-shadow: 0 2px 10px rgba(76, 175, 80, 0.4);
+        }
+        .card-cng h3 {
+            color: #4CAF50 !important;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.4) !important;
+        }
+        .card-cng .fuel-txt {
+            color: #81C784 !important;
+            font-weight: bold;
+        }
+
+        .card-electric {
+            border: 1px solid rgba(33, 150, 243, 0.4) !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(33, 150, 243, 0.05);
+        }
+        .card-electric .driver-banner {
+            background: linear-gradient(90deg, #2196F3, #00E5FF) !important;
+            box-shadow: 0 2px 10px rgba(33, 150, 243, 0.4);
+        }
+        .card-electric h3 {
+            color: #00E5FF !important;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.4) !important;
+        }
+        .card-electric .fuel-txt {
+            color: #00E5FF !important;
+            font-weight: bold;
+        }
+
+        .card-petrol {
+            border: 1px solid rgba(255, 193, 7, 0.3) !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(255, 193, 7, 0.05);
+        }
+        .card-petrol .driver-banner {
+            background: linear-gradient(90deg, #FFD54F, #FFC107, #FFA000) !important;
+            box-shadow: 0 2px 10px rgba(255, 193, 7, 0.4);
+        }
+        .card-petrol h3 {
+            color: #FFC107 !important;
+            font-family: Arial, sans-serif;
+            text-shadow: 0 0 10px rgba(255, 193, 7, 0.3) !important;
+        }
+        .card-petrol .fuel-txt {
+            color: #FFC107 !important;
+            font-weight: bold;
+        }
+
         .driver-card:hover{
             transform: translateY(-4px);
-            border-color: rgba(255, 193, 7, 0.5);
-            /* The result card generates an active glow aura when user inspects it */
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 193, 7, 0.15);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
         }
+        .card-cng:hover { box-shadow: 0 12px 35px rgba(0,0,0,0.6), 0 0 20px rgba(76, 175, 80, 0.25); }
+        .card-electric:hover { box-shadow: 0 12px 35px rgba(0,0,0,0.6), 0 0 20px rgba(33, 150, 243, 0.25); }
+        .card-petrol:hover { box-shadow: 0 12px 35px rgba(0,0,0,0.6), 0 0 20px rgba(255, 193, 7, 0.3); }
 
         .driver-banner{
             position:absolute;
@@ -232,6 +370,10 @@
             margin-bottom:8px;
             margin-top:6px;
             text-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+            max-width: 70%; 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .driver-card p{
@@ -259,12 +401,12 @@
         
         h1{
             text-align:center;
-            color:#FCC107;
+            color:#FFC107;
             margin-bottom:20px;
             text-shadow: 0 0 15px rgba(254, 193, 7, 0.4);
         }
 
-        input, #place{
+        input, #place, .signup-select {
             width:100%;
             padding:12px;
             margin-bottom:5px;
@@ -276,10 +418,15 @@
             transition: 0.3s;
         }
 
-        input:focus{
+        input:focus, #place:focus, .signup-select:focus{
             border-color:#FFC107;
             background:rgba(30, 30, 36, 0.9);
             box-shadow: 0 0 15px rgba(255, 193, 7, 0.15);
+        }
+
+        .signup-select option {
+            background: #1a1a24;
+            color: white;
         }
 
         .error{
@@ -289,7 +436,6 @@
             height:14px;
         }
 
-        /* PAGE VIEWS WITH TRANSITIONS */
         #customerPage, #driverPage {
             width: 100%;
             display: flex;
@@ -307,7 +453,6 @@
             pointer-events: auto;
         }
 
-        /* CURVY NAV WITH RADIANT INTENSIFIED CAPSULE */
         .bottom-nav-container {
             position: fixed;
             bottom: 20px;
@@ -365,12 +510,23 @@
             height: 100%;
             background: linear-gradient(135deg, #FFEB3B, #FFC107, #FF9800);
             border-radius: 25px;
-            /* High-intensity outer glow for the active nav item */
             box-shadow: 0 0 25px rgba(255, 193, 7, 0.6);
             z-index: 1;
             transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
         }
 
+        .toggle-link {
+            color: #4dabf7;
+            text-align: center;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 15px;
+            text-decoration: underline;
+        }
+
+        .hidden-field {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -378,7 +534,7 @@
 
 <div class="ambient-glow-1"></div>
 <div class="ambient-glow-2"></div>
-                                                                    
+                                                                                
 <div id="customerPage" class="active-view">
     <select id="location">
         <option selected>Kizhisseri</option>
@@ -397,48 +553,87 @@
         <button id="findBtn">Find Auto</button>
     </div>
 
-    <p id="result">Showing autos at : Kizhisseri</p>
+    <p id="result">Showing all registered autos</p>
     <div id="resulted"></div>
 </div>
 
-
 <div id="driverPage" style="display: none;">
-    <div class="app">
-        <h1>ഓട്ടോക്കാരൻ!</h1>
+    <div class="app hidden-field" id="driverProfileView">
+        <h1 id="welcomeDriver">Welcome!</h1>
+        
+        <div class="status-container">
+            <span class="status-label">Duty Status</span>
+            <div class="status-selector">
+                <div class="status-option" id="statusActiveBtn">Active</div>
+                <div class="status-option" id="statusInactiveBtn">Inactive</div>
+            </div>
+        </div>
 
-        <input type="text" id="name" placeholder="Driver Name">
-        <div class="error" id="nameError"></div>
+        <div class="driver-card" id="profileCardRoot" style="margin-top:5px; width:100%;">
+            <div class="driver-banner"></div>
+            <h3 id="profName">👤 --</h3>
+            <p id="profGender">🧬 Gender: --</p>
+            <p id="profPhone">📞 --</p>
+            <p id="profPlace">📍 --</p>
+            <p id="profFuel">⛽ Fuel: --</p>
+            <p id="profPlate">🚕 --</p>
+        </div>
+        <button class="secondary-btn" id="logoutBtn">Logout Account</button>
+        <button class="danger-btn" id="deleteBtn">Delete Account</button>
+    </div>
+
+    <div class="app" id="driverAuthView">
+        <h1 id="authTitle">ഓട്ടോക്കാരൻ Sign In</h1>
 
         <input type="text" id="phone" placeholder="10 digit phone number">
         <div class="error" id="phoneError"></div>
 
-        <input type="text" id="plate" placeholder="Vehicle Number (KL 01 AB 1234)">
-        <div class="error" id="plateError"></div>
+        <input type="password" id="password" placeholder="Password (min 6 characters)">
+        <div class="error" id="passError"></div>
 
-        <select id="place">
-            <option>Kizhisseri</option>
-            <option>Kondotty</option>
-            <option>Mongam</option>
-            <option>Areekode</option>
-            <option>Ramanatukara</option>
-            <option>Coimbature</option>
-        </select>
+        <div id="signUpFields" class="hidden-field">
+            <input type="text" id="name" placeholder="Driver Name">
+            <div class="error" id="nameError"></div>
 
-        <button onclick="addDriver()">Upload Driver</button>
+            <input type="text" id="plate" placeholder="Vehicle Number (KL 01 AB 1234)">
+            <div class="error" id="plateError"></div>
+
+            <select id="gender" class="signup-select">
+                <option value="" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <div class="error" id="genderError"></div>
+
+            <select id="fuel" class="signup-select">
+                <option value="" disabled selected>Select Fuel Type</option>
+                <option value="CNG">CNG</option>
+                <option value="Petrol">Petrol</option>
+                <option value="Electric">Electric</option>
+            </select>
+            <div class="error" id="fuelError"></div>
+
+            <select id="place">
+                <option>Kizhisseri</option>
+                <option>Kondotty</option>
+                <option>Mongam</option>
+                <option>Areekode</option>
+                <option>Ramanatukara</option>
+                <option>Coimbature</option>
+            </select>
+            <div style="height:15px;"></div>
+        </div>
+
+        <button class="action-btn" id="authSubmitBtn">Sign In</button>
+        <p class="toggle-link" id="authToggleLink">New driver? Create an account (Sign Up)</p>
     </div>
 </div>
 
 <div class="bottom-nav-container">
     <div class="bottom-nav">
         <div class="nav-slider" id="navSlider"></div>
-
-        <button id="customerBtn" class="active-tab">
-            🚕 Customer
-        </button>
-
-        <button id="driverBtn">
-            👨‍✈️ Driver
-        </button>
+        <button id="customerBtn" class="active-tab">🚕 Customer</button>
+        <button id="driverBtn">👨‍✈️ Driver</button>
     </div>
 </div>
 
@@ -449,8 +644,22 @@ import {
     getFirestore,
     collection,
     getDocs,
-    addDoc
+    doc,
+    setDoc,
+    getDoc,
+    updateDoc,
+    deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { 
+    getAuth, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    signOut, 
+    onAuthStateChanged,
+    deleteUser,
+    EmailAuthProvider,
+    reauthenticateWithCredential
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB4uGZ9g3ju9qAFg7OW-OfBy9Pf1-UfE1E",
@@ -464,15 +673,284 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
+
+let isSignUpMode = false;
+let currentUID = null;
+let currentStatus = "Active"; 
+let currentDriverPhone = ""; 
 
 const locationSelect = document.getElementById("location");
 const result = document.getElementById("result");
 const findBtn = document.getElementById("findBtn");
 const resulted = document.getElementById("resulted");
 
-findBtn.addEventListener("click", async () => {
+const driverAuthView = document.getElementById("driverAuthView");
+const driverProfileView = document.getElementById("driverProfileView");
+const signUpFields = document.getElementById("signUpFields");
+const authTitle = document.getElementById("authTitle");
+const authSubmitBtn = document.getElementById("authSubmitBtn");
+const authToggleLink = document.getElementById("authToggleLink");
+const logoutBtn = document.getElementById("logoutBtn");
+const deleteBtn = document.getElementById("deleteBtn");
+
+const statusActiveBtn = document.getElementById("statusActiveBtn");
+const statusInactiveBtn = document.getElementById("statusInactiveBtn");
+
+const phoneInput = document.getElementById("phone");
+const passInput = document.getElementById("password");
+const nameInput = document.getElementById("name");
+const plateInput = document.getElementById("plate");
+const genderSelect = document.getElementById("gender");
+const fuelSelect = document.getElementById("fuel");
+const placeSelect = document.getElementById("place");
+
+const phoneError = document.getElementById("phoneError");
+const passError = document.getElementById("passError");
+const nameError = document.getElementById("nameError");
+const plateError = document.getElementById("plateError");
+const genderError = document.getElementById("genderError");
+const fuelError = document.getElementById("fuelError");
+
+const profileCardRoot = document.getElementById("profileCardRoot");
+
+function formatEmail(phone) {
+    return `${phone.trim()}@heyauto.com`;
+}
+
+function updateStatusUI(status) {
+    currentStatus = status;
+    if (status === "Active") {
+        statusActiveBtn.classList.add("selected-active");
+        statusInactiveBtn.classList.remove("selected-inactive");
+    } else {
+        statusActiveBtn.classList.remove("selected-active");
+        statusInactiveBtn.classList.add("selected-inactive");
+    }
+}
+
+async function setDriverStatusInFirebase(status) {
+    if (!currentUID) return;
+    try {
+        const docRef = doc(db, "Drivers", currentUID);
+        await updateDoc(docRef, { status: status });
+    } catch (e) {
+        console.error("Error updating status field", e);
+    }
+}
+
+statusActiveBtn.addEventListener("click", () => {
+    if (currentStatus !== "Active") {
+        updateStatusUI("Active");
+        setDriverStatusInFirebase("Active");
+    }
+});
+
+statusInactiveBtn.addEventListener("click", () => {
+    if (currentStatus !== "Inactive") {
+        updateStatusUI("Inactive");
+        setDriverStatusInFirebase("Inactive");
+    }
+});
+
+function getFuelClass(fuel) {
+    if (!fuel) return "card-petrol";
+    const f = fuel.toUpperCase();
+    if (f === "CNG") return "card-cng";
+    if (f === "ELECTRIC") return "card-electric";
+    return "card-petrol";
+}
+
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        currentUID = user.uid;
+        driverAuthView.classList.add("hidden-field");
+        driverProfileView.classList.remove("hidden-field");
+        
+        try {
+            const docRef = doc(db, "Drivers", user.uid);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                currentDriverPhone = data.phone; 
+                document.getElementById("welcomeDriver").textContent = `Welcome, ${data.name}!`;
+                document.getElementById("profName").textContent = `👤 ${data.name}`;
+                document.getElementById("profGender").textContent = `🧬 Gender: ${data.gender || '--'}`;
+                document.getElementById("profPhone").textContent = `📞 ${data.phone}`;
+                document.getElementById("profPlace").textContent = `📍 ${data.place}`;
+                document.getElementById("profFuel").textContent = `⛽ Fuel: ${data.fuel || '--'}`;
+                document.getElementById("profPlate").textContent = `🚕 Plate: ${data.plate}`;
+                
+                profileCardRoot.className = "driver-card " + getFuelClass(data.fuel);
+
+                const dbStatus = data.status || "Active";
+                updateStatusUI(dbStatus);
+            }
+        } catch (e) {
+            console.error("Error loading profile layout", e);
+        }
+    } else {
+        currentUID = null;
+        currentDriverPhone = "";
+        driverProfileView.classList.add("hidden-field");
+        driverAuthView.classList.remove("hidden-field");
+    }
+});
+
+authToggleLink.addEventListener("click", () => {
+    isSignUpMode = !isSignUpMode;
+    phoneError.textContent = ""; passError.textContent = ""; nameError.textContent = ""; plateError.textContent = ""; genderError.textContent = ""; fuelError.textContent = "";
+    
+    if (isSignUpMode) {
+        authTitle.textContent = "ഓട്ടോക്കാരൻ Sign Up";
+        authSubmitBtn.textContent = "Create Account & Sign Up";
+        authToggleLink.textContent = "Already have an account? Sign In";
+        signUpFields.classList.remove("hidden-field");
+    } else {
+        authTitle.textContent = "ഓട്ടോക്കാരൻ Sign In";
+        authSubmitBtn.textContent = "Sign In";
+        authToggleLink.textContent = "New driver? Create an account (Sign Up)";
+        signUpFields.classList.add("hidden-field");
+    }
+});
+
+authSubmitBtn.addEventListener("click", async () => {
+    let valid = true;
+    phoneError.textContent = ""; passError.textContent = ""; nameError.textContent = ""; plateError.textContent = ""; genderError.textContent = ""; fuelError.textContent = "";
+
+    const phoneValue = phoneInput.value.trim();
+    const passValue = passInput.value;
+
+    if(phoneValue === "") {
+        phoneError.textContent = "This field is required";
+        valid = false;
+    } else if(!/^\d{10}$/.test(phoneValue)) {
+        phoneError.textContent = "Enter exactly 10 digits";
+        valid = false;
+    }
+
+    if(passValue.length < 6) {
+        passError.textContent = "Password must be at least 6 characters";
+        valid = false;
+    }
+
+    if (isSignUpMode) {
+        if(nameInput.value.trim() === ""){
+            nameError.textContent = "This field is required";
+            valid = false;
+        }
+
+        const plateValue = plateInput.value.trim();
+        const platePattern = /^[A-Z]{2}\s?\d{2}\s?[A-Z]{1,2}\s?\d{1,4}$/;
+
+        if(plateValue === ""){
+            plateError.textContent = "This field is required";
+            valid = false;
+        } else if(!platePattern.test(plateValue.toUpperCase())){
+            plateError.textContent = "Enter valid format like KL 01 AB 1234";
+            valid = false;
+        }
+
+        if(!genderSelect.value || genderSelect.value === "") {
+            genderError.textContent = "Gender selection is mandatory to register.";
+            valid = false;
+        }
+
+        if(!fuelSelect.value || fuelSelect.value === "") {
+            fuelError.textContent = "Fuel type selection is mandatory to register.";
+            valid = false;
+        }
+    }
+
+    if(!valid) return;
+
+    const fakeEmail = formatEmail(phoneValue);
+
+    if (isSignUpMode) {
+        try {
+            const credential = await createUserWithEmailAndPassword(auth, fakeEmail, passValue);
+            
+            await setDoc(doc(db, "Drivers", credential.user.uid), {
+                uid: credential.user.uid,
+                name: nameInput.value.trim(),
+                phone: phoneValue,
+                plate: plateInput.value.trim().toUpperCase(),
+                gender: genderSelect.value,
+                fuel: fuelSelect.value,
+                place: placeSelect.value,
+                status: "Active" 
+            });
+
+            alert("Driver account created and uploaded successfully!");
+            nameInput.value = ""; plateInput.value = ""; phoneInput.value = ""; passInput.value = "";
+            genderSelect.value = ""; fuelSelect.value = "";
+        } catch(error) {
+            console.error(error);
+            if (error.code === "auth/email-already-in-use" || error.code === "auth/credential-already-in-use") {
+                phoneError.textContent = "This number already exists!";
+                alert("Registration failed: This phone number is already registered.");
+            } else {
+                alert("Registration failed: " + error.message);
+            }
+        }
+    } else {
+        try {
+            await signInWithEmailAndPassword(auth, fakeEmail, passValue);
+            alert("Logged in successfully!");
+            phoneInput.value = ""; passInput.value = "";
+        } catch(error) {
+            console.error(error);
+            alert("Authentication failed: Check phone number or password.");
+        }
+    }
+});
+
+logoutBtn.addEventListener("click", async () => {
+    try {
+        await signOut(auth);
+        alert("Logged out successfully!");
+    } catch(e) {
+        console.error(e);
+    }
+});
+
+deleteBtn.addEventListener("click", async () => {
+    const confirmFirst = confirm("Are you sure you want to permanently delete your driver account? This action cannot be undone.");
+    if (!confirmFirst) return;
+
+    const typedPassword = prompt("Please enter your password to confirm deletion:");
+    if (typedPassword === null) return; 
+    if (typedPassword.trim() === "") {
+        alert("Password cannot be empty.");
+        return;
+    }
+
+    const user = auth.currentUser;
+    if (!user || !currentDriverPhone) {
+        alert("Session lost. Please log in again to delete your account.");
+        return;
+    }
+
+    const fakeEmail = formatEmail(currentDriverPhone);
+    const credential = EmailAuthProvider.credential(fakeEmail, typedPassword);
+
+    try {
+        await reauthenticateWithCredential(user, credential);
+        
+        const docRef = doc(db, "Drivers", user.uid);
+        await deleteDoc(docRef);
+        await deleteUser(user);
+
+        alert("Your driver profile has been completely deleted.");
+    } catch (error) {
+        console.error(error);
+        alert("Deletion failed: Password incorrect or network error.");
+    }
+});
+
+async function loadAllDrivers() {
     const selectedLocation = locationSelect.value;
-    result.textContent = "Showing autos at : " + selectedLocation;
+    result.textContent = `Showing autos for location: ${selectedLocation}`;
     resulted.innerHTML = "";
 
     try {
@@ -483,21 +961,47 @@ findBtn.addEventListener("click", async () => {
             drivers.push(doc.data());
         });
 
-        const filteredDrivers = drivers.filter(driver => driver.place === selectedLocation);
-
-        if(filteredDrivers.length === 0){
-            resulted.innerHTML = `<p class="not-found">No autos available in this location.</p>`;
+        if(drivers.length === 0){
+            resulted.innerHTML = `<p class="not-found">No drivers registered on the system yet.</p>`;
             return;
         }
 
-        filteredDrivers.forEach(driver => {
+        drivers.sort((a, b) => {
+            const matchA = a.place === selectedLocation ? 1 : 0;
+            const matchB = b.place === selectedLocation ? 1 : 0;
+            
+            if (matchA !== matchB) {
+                return matchB - matchA; 
+            }
+            
+            const statusA = a.status || "Active";
+            const statusB = b.status || "Active";
+            if (statusA === "Active" && statusB !== "Active") return -1;
+            if (statusA !== "Active" && statusB === "Active") return 1;
+            return 0;
+        });
+
+        drivers.forEach(driver => {
+            const currentDriverStatus = driver.status || "Active";
+            const isDriverActive = currentDriverStatus === "Active";
+
+            const badgeClass = isDriverActive ? "badge-active" : "badge-inactive";
+            const badgeText = isDriverActive ? "Active" : "Inactive";
+            
+            const driverGender = driver.gender || "Not specified";
+            const driverFuel = driver.fuel || "Not specified";
+            const fuelThemeClass = getFuelClass(driverFuel);
+
             const card = document.createElement("div");
-            card.classList.add("driver-card");
+            card.className = `driver-card ${fuelThemeClass}`;
             card.innerHTML = `
                 <div class="driver-banner"></div>
+                <span class="badge ${badgeClass}">${badgeText}</span>
                 <h3>👤 ${driver.name}</h3>
+                <p>🧬 <strong>Gender:</strong> ${driverGender}</p>
                 <p><a href="tel:${driver.phone}">📞 ${driver.phone}</a></p>
-                <p>📍 ${driver.place}</p>
+                <p>📍 <strong>Hub:</strong> ${driver.place}</p>
+                <p>⛽ <strong>Fuel Type:</strong> <span class="fuel-txt">${driverFuel}</span></p>
                 <p>🚕 <strong>Number Plate:</strong> ${driver.plate}</p>
             `;
             resulted.appendChild(card);
@@ -507,68 +1011,10 @@ findBtn.addEventListener("click", async () => {
         console.error(error);
         resulted.innerHTML = `<p class="not-found">Failed to load drivers.</p>`;
     }
-});
+}
 
-window.addDriver = async function() {
-    const name = document.getElementById("name");
-    const phone = document.getElementById("phone");
-    const plate = document.getElementById("plate");
-    const place = document.getElementById("place");
-
-    const nameError = document.getElementById("nameError");
-    const phoneError = document.getElementById("phoneError");
-    const plateError = document.getElementById("plateError");
-
-    let valid = true;
-
-    nameError.textContent = "";
-    phoneError.textContent = "";
-    plateError.textContent = "";
-
-    if(name.value.trim() === ""){
-        nameError.textContent = "This field is required";
-        valid = false;
-    }
-
-    const phoneValue = phone.value.trim();
-    if(phoneValue === ""){
-        phoneError.textContent = "This field is required";
-        valid = false;
-    } else if(!/^\d{10}$/.test(phoneValue)){
-        phoneError.textContent = "Enter exactly 10 digits";
-        valid = false;
-    }
-
-    const plateValue = plate.value.trim();
-    const platePattern = /^[A-Z]{2}\s?\d{2}\s?[A-Z]{1,2}\s?\d{1,4}$/;
-
-    if(plateValue === ""){
-        plateError.textContent = "This field is required";
-        valid = false;
-    } else if(!platePattern.test(plateValue.toUpperCase())){
-        plateError.textContent = "Enter valid format like KL 01 AB 1234";
-        valid = false;
-    }
-
-    if(!valid) return;
-
-    try {
-        await addDoc(collection(db, "Drivers"), {
-            name: name.value.trim(),
-            phone: phoneValue,
-            plate: plateValue.toUpperCase(),
-            place: place.value
-        });
-
-        alert("Driver uploaded successfully!");
-        name.value = "";
-        phone.value = "";
-        plate.value = "";
-    } catch(error) {
-        console.error(error);
-        alert("Upload failed");
-    }
-};
+findBtn.addEventListener("click", loadAllDrivers);
+window.addEventListener("DOMContentLoaded", loadAllDrivers);
 
 const customerPage = document.getElementById("customerPage");
 const driverPage = document.getElementById("driverPage");
@@ -578,14 +1024,12 @@ const navSlider = document.getElementById("navSlider");
 
 driverBtn.addEventListener("click", () => {
     customerPage.classList.remove("active-view");
-    
     setTimeout(() => {
         customerPage.style.display = "none";
         driverPage.style.display = "flex";
         void driverPage.offsetWidth; 
         driverPage.classList.add("active-view");
     }, 200);
-
     navSlider.style.transform = "translateX(100%)";
     driverBtn.classList.add("active-tab");
     customerBtn.classList.remove("active-tab");
@@ -593,14 +1037,12 @@ driverBtn.addEventListener("click", () => {
 
 customerBtn.addEventListener("click", () => {
     driverPage.classList.remove("active-view");
-
     setTimeout(() => {
         driverPage.style.display = "none";
         customerPage.style.display = "flex";
         void customerPage.offsetWidth; 
         customerPage.classList.add("active-view");
     }, 200);
-
     navSlider.style.transform = "translateX(0%)";
     customerBtn.classList.add("active-tab");
     driverBtn.classList.remove("active-tab");
