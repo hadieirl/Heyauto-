@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HeyAuto!</title>
-    <link rel="stylesheet" href="index.css">
-
+   <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
@@ -14,14 +13,15 @@
 <div class="ambient-glow-2"></div>
                                                                                 
 <div id="customerPage" class="active-view">
-    <select id="location">
-        <option selected>Kizhisseri</option>
-        <option>Kondotty</option>
-        <option>Mongam</option>
-        <option>Areekode</option>
-        <option>Ramanatukara</option>
-        <option>Coimbature</option>
-    </select>
+<select id="location">
+    <option value="" disabled selected>Select a place</option>
+    <option>Kizhisseri</option>
+    <option>Kondotty</option>
+    <option>Mongam</option>
+    <option>Areekode</option>
+    <option>Ramanatukara</option>
+    <option>Coimbatore</option>
+</select>
 
     <div class="app">
         <div class="appi">
@@ -47,13 +47,25 @@
             </div>
         </div>
 
+        <div class="status-container" style="margin-top: 10px;">
+            <span class="status-label">Duty Shift</span>
+            <select id="dutyTimeSelect" class="shift-select">
+                <option value="Anytime">Anytime</option>
+                <option value="6 AM - 4 PM">6 AM - 4 PM</option>
+                <option value="8 PM - 4 AM">8 PM - 4 AM</option>
+            </select>
+        </div>
+
         <div class="driver-card" id="profileCardRoot" style="margin-top:5px; width:100%;">
             <div class="driver-banner"></div>
+            <!-- Render Driver Profile Chosen Vehicle Model -->
+            <img id="profAutoImg" class="card-auto-img" src="cng.png" alt="Auto Variant Layout">
             <h3 id="profName">👤 --</h3>
             <p id="profGender">🧬 Gender: --</p>
             <p id="profPhone">📞 --</p>
             <p id="profPlace">📍 --</p>
             <p id="profFuel">⛽ Fuel: --</p>
+            <p id="profShift">🕒 Shift: --</p>
             <p id="profPlate">🚕 --</p>
         </div>
         <button class="secondary-btn" id="logoutBtn">Logout Account</button>
@@ -99,6 +111,32 @@
                 <option>Ramanatukara</option>
                 <option>Coimbature</option>
             </select>
+            
+            <!-- Dynamic Choice Selector Framework Component Integration -->
+            <span class="auto-selector-label">Choose Your Auto Variant:</span>
+            <div class="auto-selector" id="autoSelectorContainer">
+                <div class="auto-option selected" data-value="cng.png">
+                    <img src="cng.png" alt="cng.png Model Variant">
+                    <p>cng.png</p>
+                </div>
+                <div class="auto-option" data-value="karand.png">
+                    <img src="karand.png" alt="karand.png Model Variant">
+                    <p>karand.png</p>
+                </div>
+                <div class="auto-option" data-value="kotta.png">
+                    <img src="kotta.png" alt="kotta.png Model Variant">
+                    <p>kotta.png</p>
+                </div>
+                <div class="auto-option" data-value="kutti.png">
+                    <img src="kutti.png" alt="kutti.png Model Variant">
+                    <p>kutti.png</p>
+                </div>
+                <div class="auto-option" data-value="Valuth.png">
+                    <img src="Valuth.png" alt="Valuth.png Model Variant">
+                    <p>Valuth.png</p>
+                </div>
+            </div>
+            
             <div style="height:15px;"></div>
         </div>
 
@@ -112,6 +150,43 @@
         <div class="nav-slider" id="navSlider"></div>
         <button id="customerBtn" class="active-tab">🛺 Passenger</button>
         <button id="driverBtn">👨‍✈️ Driver</button>
+    </div>
+</div>
+
+<!-- ================= AESTHETIC FOOTER ================= -->
+<footer class="app-footer">
+    <div class="footer-bottom">
+        <div class="footer-left">
+            <span>🌐 English (India)</span>
+        </div>
+        <div class="footer-right">
+            <span class="footer-item">🛠️ Dev: Hadi Shanavas</span>
+            <a href="tel:8848218875" class="footer-item">📞 Support: 8848218875</a>
+            <a href="#" id="openPrivacy" class="footer-item">Privacy Policy</a>
+            <a href="#" id="openTerms" class="footer-item">Terms of Use</a>
+            <span class="footer-item">© 2026 HeyAuto!</span>
+        </div>
+    </div>
+</footer>
+
+<!-- ================= MODALS (Hidden by default) ================= -->
+<!-- Privacy Modal -->
+<div id="privacyModal" class="legal-modal">
+    <div class="legal-modal-content">
+        <span class="close-modal" id="closePrivacy">&times;</span>
+        <h2>Privacy Policy</h2>
+        <p>Your privacy is our priority. <strong>HeyAuto!</strong> operates using Google's secure Firebase infrastructure. We guarantee that your personal data, phone numbers, and location details are strictly encrypted.</p>
+        <p><strong>We do not leak, sell, or share your data</strong> with any third parties. Your information is only used to connect drivers and passengers safely within the app.</p>
+    </div>
+</div>
+
+<!-- Terms Modal -->
+<div id="termsModal" class="legal-modal">
+    <div class="legal-modal-content">
+        <span class="close-modal" id="closeTerms">&times;</span>
+        <h2>Terms & Conditions</h2>
+        <p>By using <strong>HeyAuto!</strong>, you agree to conduct yourself respectfully. Drivers must provide accurate vehicle information and maintain their duty status honestly.</p>
+        <p>Passengers must ensure they contact the correct drivers for their hubs. HeyAuto! serves strictly as a connecting platform and is not liable for offline interactions.</p>
     </div>
 </div>
 
@@ -157,6 +232,7 @@ let isSignUpMode = false;
 let currentUID = null;
 let currentStatus = "Active"; 
 let currentDriverPhone = ""; 
+let selectedAutoImage = "cng.png"; // Track selection choice states safely
 
 const locationSelect = document.getElementById("location");
 const result = document.getElementById("result");
@@ -174,6 +250,7 @@ const deleteBtn = document.getElementById("deleteBtn");
 
 const statusActiveBtn = document.getElementById("statusActiveBtn");
 const statusInactiveBtn = document.getElementById("statusInactiveBtn");
+const dutyTimeSelect = document.getElementById("dutyTimeSelect"); 
 
 const phoneInput = document.getElementById("phone");
 const passInput = document.getElementById("password");
@@ -191,6 +268,18 @@ const genderError = document.getElementById("genderError");
 const fuelError = document.getElementById("fuelError");
 
 const profileCardRoot = document.getElementById("profileCardRoot");
+const profShift = document.getElementById("profShift"); 
+const profAutoImg = document.getElementById("profAutoImg");
+
+// Map Input Handler Listeners over Auto Selection Option Items
+const autoOptions = document.querySelectorAll("#autoSelectorContainer .auto-option");
+autoOptions.forEach(opt => {
+    opt.addEventListener("click", () => {
+        autoOptions.forEach(o => o.classList.remove("selected"));
+        opt.classList.add("selected");
+        selectedAutoImage = opt.getAttribute("data-value");
+    });
+});
 
 function formatEmail(phone) {
     return `${phone.trim()}@heyauto.com`;
@@ -217,6 +306,34 @@ async function setDriverStatusInFirebase(status) {
     }
 }
 
+function isTimeInShift(shift) {
+    if (shift === "Anytime") return true;
+
+    const now = new Date();
+    const currentHour = now.getHours(); 
+
+    if (shift === "6 AM - 4 PM") {
+        return currentHour >= 6 && currentHour < 16;
+    } else if (shift === "8 PM - 4 AM") {
+        return currentHour >= 20 || currentHour < 4;
+    }
+    
+    return true; 
+}
+
+async function enforceDutyStatus(shift) {
+    if (!currentUID) return;
+    
+    const shouldBeActive = isTimeInShift(shift);
+    const targetStatus = shouldBeActive ? "Active" : "Inactive";
+
+    if (currentStatus !== targetStatus) {
+        updateStatusUI(targetStatus);
+        await setDriverStatusInFirebase(targetStatus);
+    }
+}
+
+// Manual Break controls (user can click these at any time to override)
 statusActiveBtn.addEventListener("click", () => {
     if (currentStatus !== "Active") {
         updateStatusUI("Active");
@@ -228,6 +345,21 @@ statusInactiveBtn.addEventListener("click", () => {
     if (currentStatus !== "Inactive") {
         updateStatusUI("Inactive");
         setDriverStatusInFirebase("Inactive");
+    }
+});
+
+dutyTimeSelect.addEventListener("change", async (e) => {
+    if (!currentUID) return;
+    const newShift = e.target.value;
+    try {
+        const docRef = doc(db, "Drivers", currentUID);
+        await updateDoc(docRef, { shift: newShift });
+        profShift.textContent = `🕒 Shift: ${newShift}`;
+        
+        // Auto-check time when shift is changed
+        enforceDutyStatus(newShift);
+    } catch (error) {
+        console.error("Error updating shift field", error);
     }
 });
 
@@ -259,10 +391,21 @@ onAuthStateChanged(auth, async (user) => {
                 document.getElementById("profFuel").textContent = `⛽ Fuel: ${data.fuel || '--'}`;
                 document.getElementById("profPlate").textContent = `🚕 Plate: ${data.plate}`;
                 
+                // Fetch and showcase chosen asset file in profile layout
+                profAutoImg.src = data.autoImage || "cng.png";
+                
+                const dbShift = data.shift || "Anytime";
+                dutyTimeSelect.value = dbShift;
+                profShift.textContent = `🕒 Shift: ${dbShift}`;
+                
                 profileCardRoot.className = "driver-card " + getFuelClass(data.fuel);
 
+                // Load initial DB status just in case we need it, but enforce based on time right after
                 const dbStatus = data.status || "Active";
                 updateStatusUI(dbStatus);
+                
+                // Check time strictly on load
+                enforceDutyStatus(dbShift);
             }
         } catch (e) {
             console.error("Error loading profile layout", e);
@@ -356,7 +499,9 @@ authSubmitBtn.addEventListener("click", async () => {
                 gender: genderSelect.value,
                 fuel: fuelSelect.value,
                 place: placeSelect.value,
-                status: "Active" 
+                status: "Active",
+                shift: "Anytime",
+                autoImage: selectedAutoImage // Save selection key parameter down within document collections mapping
             });
 
             alert("Driver account created and uploaded successfully!");
@@ -435,16 +580,16 @@ async function loadAllDrivers() {
         const snapshot = await getDocs(collection(db, "Drivers"));
         const drivers = [];
 
-     snapshot.forEach(doc => {
-    const driver = doc.data();
+        snapshot.forEach(doc => {
+            const driver = doc.data();
 
-    if (
-        driver.place &&
-        driver.place.toLowerCase() === selectedLocation.toLowerCase()
-    ) {
-        drivers.push(driver);
-    }
-});
+            if (
+                driver.place &&
+                driver.place.toLowerCase() === selectedLocation.toLowerCase()
+            ) {
+                drivers.push(driver);
+            }
+        });
         if(drivers.length === 0){
             resulted.innerHTML = `<p class="not-found">No drivers registered on the system yet.</p>`;
             return;
@@ -474,20 +619,32 @@ async function loadAllDrivers() {
             
             const driverGender = driver.gender || "Not specified";
             const driverFuel = driver.fuel || "Not specified";
+            const driverShift = driver.shift || "Anytime"; 
             const fuelThemeClass = getFuelClass(driverFuel);
+            
+            // Extract the saved profile dynamic auto variant configuration key reference
+            const driverAutoImg = driver.autoImage || "cng.png";
 
             const card = document.createElement("div");
             card.className = `driver-card ${fuelThemeClass}`;
-            card.innerHTML = `
-                <div class="driver-banner"></div>
-                <span class="badge ${badgeClass}">${badgeText}</span>
-                <h3>👤 ${driver.name}</h3>
-                <p>🧬 <strong>Gender:</strong> ${driverGender}</p>
-                <p><a href="tel:${driver.phone}">📞 ${driver.phone}</a></p>
-                <p>📍 <strong>Hub:</strong> ${driver.place}</p>
-                <p>⛽ <strong>Fuel Type:</strong> <span class="fuel-txt">${driverFuel}</span></p>
-                <p>🚕 <strong>Number Plate:</strong> ${driver.plate}</p>
-            `;
+card.innerHTML = `
+    <div class="driver-banner"></div>
+    <img src="${driverAutoImg}" class="card-auto-img" alt="Auto Variant Selection Preview">
+    <span class="badge ${badgeClass}">${badgeText}</span>
+    <h3>👤 ${driver.name}</h3>
+    
+    
+    <p class="call-btn-container">
+        <a href="tel:${driver.phone}" class="animated-call-btn">
+            <span>📞 Call Driver</span>
+        </a>
+    </p>
+<p>🧬 <strong>Gender:</strong> ${driverGender}</p>
+    <p>📍 <strong>Hub:</strong> ${driver.place}</p>
+    <p>⛽ <strong>Fuel Type:</strong> <span class="fuel-txt">${driverFuel}</span></p>
+    <p>🕒 <strong>Shift:</strong> ${driverShift}</p>
+    <p>Taxi <strong>Number Plate:</strong> ${driver.plate}</p>
+`;
             resulted.appendChild(card);
         });
 
@@ -530,6 +687,34 @@ customerBtn.addEventListener("click", () => {
     navSlider.style.transform = "translateX(0%)";
     customerBtn.classList.add("active-tab");
     driverBtn.classList.remove("active-tab");
+});
+
+// ================= LEGAL MODAL LOGIC =================
+const privacyModal = document.getElementById("privacyModal");
+const termsModal = document.getElementById("termsModal");
+
+document.getElementById("openPrivacy").addEventListener("click", (e) => {
+    e.preventDefault();
+    privacyModal.style.display = "flex";
+});
+
+document.getElementById("openTerms").addEventListener("click", (e) => {
+    e.preventDefault();
+    termsModal.style.display = "flex";
+});
+
+document.getElementById("closePrivacy").addEventListener("click", () => {
+    privacyModal.style.display = "none";
+});
+
+document.getElementById("closeTerms").addEventListener("click", () => {
+    termsModal.style.display = "none";
+});
+
+// Close modals if the user clicks outside the modal content container box
+window.addEventListener("click", (e) => {
+    if (e.target === privacyModal) privacyModal.style.display = "none";
+    if (e.target === termsModal) termsModal.style.display = "none";
 });
 
 </script>
