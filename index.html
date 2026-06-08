@@ -77,9 +77,10 @@
                                                                                 
 <div id="customerPage" class="active-view">
     <div class="location-container">
+          <button id="gpsBtn" class="gps-btn" title="Find nearest location" data-key="nearMe">📍 Near Me</button>
         <select id="location">
             <option value="" disabled selected data-key="selectPlace">Select a Place</option>
-
+                      <button id="gpsBtn" class="gps-btn" title="Find nearest location" data-key="nearMe">📍 Near Me</button>
             <option value="Kondotty" data-key="locKondotty">Kondotty</option>
             <option value="Manjeri" data-key="locManjeri">Manjeri</option>
             <option value="Malappuram" data-key="locMalappuram">Malappuram</option>
@@ -92,8 +93,8 @@
             <option value="Parappanangadi" data-key="locParappanangadi">Parappanangadi</option>
             <option value="Tanur" data-key="locTanur">Tanur</option>
             <option value="Tirurangadi" data-key="locTirurangadi">Tirurangadi</option>
-
-            <option value="Kizhissery" data-key="locKizhissery">Kizhissery</option>
+                        <option value="Ramanatukara" data-key="locRamanatukara">Ramanatukara</option>
+            <option value="Kizhisseri" data-key="locKizhissery">Kizhisseri</option>
             <option value="Pulikkal" data-key="locPulikkal">Pulikkal</option>
             <option value="Mongam" data-key="locMongam">Mongam</option>
             <option value="Vazhakkad" data-key="locVazhakkad">Vazhakkad</option>
@@ -128,7 +129,7 @@
             <option value="Peruvallur" data-key="locPeruvallur">Peruvallur</option>
             <option value="Thenhipalam" data-key="locThenhipalam">Thenhipalam</option>
         </select>
-        <button id="gpsBtn" class="gps-btn" title="Find nearest location" data-key="nearMe">📍 Near Me</button>
+      
     </div>
 
     <div class="app">
@@ -213,55 +214,58 @@
 
             <div class="location-container">
                 <select id="place">
-                    <option value="" disabled selected data-key="selectStand">Select Stand Location</option>
-                    <option value="Kondotty" data-key="locKondotty">Kondotty</option>
-                    <option value="Manjeri" data-key="locManjeri">Manjeri</option>
-                    <option value="Malappuram" data-key="locMalappuram">Malappuram</option>
-                    <option value="Perinthalmanna" data-key="locPerinthalmanna">Perinthalmanna</option>
-                    <option value="Tirur" data-key="locTirur">Tirur</option>
-                    <option value="Kottakkal" data-key="locKottakkal">Kottakkal</option>
-                    <option value="Nilambur" data-key="locNilambur">Nilambur</option>
-                    <option value="Ponnani" data-key="locPonnani">Ponnani</option>
-                    <option value="Valanchery" data-key="locValanchery">Valanchery</option>
-                    <option value="Parappanangadi" data-key="locParappanangadi">Parappanangadi</option>
-                    <option value="Tanur" data-key="locTanur">Tanur</option>
-                    <option value="Tirurangadi" data-key="locTirurangadi">Tirurangadi</option>
+                 <option value="">Select a Place</option>
 
-                    <option value="Kizhissery" data-key="locKizhissery">Kizhissery</option>
-                    <option value="Pulikkal" data-key="locPulikkal">Pulikkal</option>
-                    <option value="Mongam" data-key="locMongam">Mongam</option>
-                    <option value="Vazhakkad" data-key="locVazhakkad">Vazhakkad</option>
-                    <option value="Vazhayoor" data-key="locVazhayoor">Vazhayoor</option>
-                    <option value="Cheekode" data-key="locCheekode">Cheekode</option>
-                    <option value="Cherukavu" data-key="locCherukavu">Cherukavu</option>
-                    <option value="Nediyiruppu" data-key="locNediyiruppu">Nediyiruppu</option>
-                    <option value="Morayur" data-key="locMorayur">Morayur</option>
-                    <option value="Kuzhimanna" data-key="locKuzhimanna">Kuzhimanna</option>
-                    <option value="Kavanur" data-key="locKavanur">Kavanur</option>
-                    <option value="Areekode" data-key="locAreekode">Areekode</option>
-                    <option value="Edavanna" data-key="locEdavanna">Edavanna</option>
+<!-- Municipalities -->
+<option value="Kondotty">Kondotty</option>
+<option value="Manjeri">Manjeri</option>
+<option value="Malappuram">Malappuram</option>
+<option value="Perinthalmanna">Perinthalmanna</option>
+<option value="Tirur">Tirur</option>
+<option value="Kottakkal">Kottakkal</option>
+<option value="Nilambur">Nilambur</option>
+<option value="Ponnani">Ponnani</option>
+<option value="Valanchery">Valanchery</option>
+<option value="Parappanangadi">Parappanangadi</option>
+<option value="Tanur">Tanur</option>
+<option value="Tirurangadi">Tirurangadi</option>
 
-                    <option value="Pandikkad" data-key="locPandikkad">Pandikkad</option>
-                    <option value="Wandoor" data-key="locWandoor">Wandoor</option>
-                    <option value="Karuvarakundu" data-key="locKaruvarakundu">Karuvarakundu</option>
-                    <option value="Vengara" data-key="locVengara">Vengara</option>
-                    <option value="Chemmad" data-key="locChemmad">Chemmad</option>
-                    <option value="Kalikavu" data-key="locKalikavu">Kalikavu</option>
-                    <option value="Mampad" data-key="locMampad">Mampad</option>
-                    <option value="Melattur" data-key="locMelattur">Melattur</option>
-                    <option value="Angadipuram" data-key="locAngadipuram">Angadipuram</option>
-                    <option value="Thirunavaya" data-key="locThirunavaya">Thirunavaya</option>
-                    <option value="Kuttippuram" data-key="locKuttippuram">Kuttippuram</option>
-                    <option value="Valavannur" data-key="locValavannur">Valavannur</option>
-                    <option value="Othukkungal" data-key="locOthukkungal">Othukkungal</option>
-                    <option value="Parappur" data-key="locParappur">Parappur</option>
-                    <option value="Kodur" data-key="locKodur">Kodur</option>
-                    <option value="Pookkottur" data-key="locPookkottur">Pookkottur</option>
-                    <option value="Anakkayam" data-key="locAnakkayam">Anakkayam</option>
-                    <option value="Elamkulam" data-key="locElamkulam">Elamkulam</option>
-                    <option value="Peruvallur" data-key="locPeruvallur">Peruvallur</option>
-                    <option value="Thenhipalam" data-key="locThenhipalam">Thenhipalam</option>
-                </select>
+<!-- Kondotty Area -->
+<option value="Kizhissery">Kizhisseri</option>
+<option value="Pulikkal">Pulikkal</option>
+<option value="Mongam">Mongam</option>
+<option value="Vazhakkad">Vazhakkad</option>
+<option value="Vazhayoor">Vazhayoor</option>
+<option value="Cheekode">Cheekode</option>
+<option value="Cherukavu">Cherukavu</option>
+<option value="Nediyiruppu">Nediyiruppu</option>
+<option value="Morayur">Morayur</option>
+<option value="Kuzhimanna">Kuzhimanna</option>
+<option value="Kavanur">Kavanur</option>
+<option value="Areekode">Areekode</option>
+<option value="Edavanna">Edavanna</option>
+
+<!-- Additional Popular Places -->
+<option value="Pandikkad">Pandikkad</option>
+<option value="Wandoor">Wandoor</option>
+<option value="Karuvarakundu">Karuvarakundu</option>
+<option value="Vengara">Vengara</option>
+<option value="Chemmad">Chemmad</option>
+<option value="Kalikavu">Kalikavu</option>
+<option value="Mampad">Mampad</option>
+<option value="Melattur">Melattur</option>
+<option value="Angadipuram">Angadipuram</option>
+<option value="Thirunavaya">Thirunavaya</option>
+<option value="Kuttippuram">Kuttippuram</option>
+<option value="Valavannur">Valavannur</option>
+<option value="Othukkungal">Othukkungal</option>
+<option value="Parappur">Parappur</option>
+<option value="Kodur">Kodur</option>
+<option value="Pookkottur">Pookkottur</option>
+<option value="Anakkayam">Anakkayam</option>
+<option value="Elamkulam">Elamkulam</option>
+<option value="Peruvallur">Peruvallur</option>
+<option value="Thenhipalam">Thenhipalam</option> </select>
                 <button id="driverGpsBtn" type="button" class="gps-btn" title="Detect current stand location" data-key="standBtn">📍 Stand</button>
             </div>
             
@@ -792,6 +796,7 @@ const hubCoordinates = [
     { name: "Pandikkad", lat: 11.1147, lng: 76.2307 },
     { name: "Wandoor", lat: 11.1944, lng: 76.2343 },
     { name: "Karuvarakundu", lat: 11.1172, lng: 76.3315 },
+    { name: "Ramanatukara", lat: 11.1797, lng: 75.8674 },
     { name: "Vengara", lat: 11.0503, lng: 75.9144 },
     { name: "Chemmad", lat: 11.0416, lng: 75.8659 },
     { name: "Kalikavu", lat: 11.1661, lng: 76.3197 },
@@ -1353,10 +1358,10 @@ async function loadAllDrivers() {
                         <span>${strings.cardCall}</span>
                     </a>
                 </p>
-                <p>🧬 <strong>${strings.cardGender.replace(':','')}</strong> ${driverGender === "Male" ? strings.genderMale : (driverGender === "Female" ? strings.genderFemale : driverGender)}</p>
-                <p>📍 <strong>${strings.cardHub.replace(':','')}</strong> ${getLocalizedPlaceName(driver.place)}</p>
-                <p>⛽ <strong>${strings.cardFuel.replace(':','')}</strong> <span class="fuel-txt">${driverFuel}</span></p>
-                <p>🕒 <strong>${strings.cardShift.replace(':','')}</strong> ${driverShift === "Anytime" ? strings.shiftAnytime : driverShift}</p>
+                <p> <strong>${strings.cardGender.replace(':','')}</strong> ${driverGender === "Male" ? strings.genderMale : (driverGender === "Female" ? strings.genderFemale : driverGender)}</p>
+                <p> <strong>${strings.cardHub.replace(':','')}</strong> ${getLocalizedPlaceName(driver.place)}</p>
+                <p> <strong>${strings.cardFuel.replace(':','')}</strong> <span class="fuel-txt">${driverFuel}</span></p>
+                <p> <strong>${strings.cardShift.replace(':','')}</strong> ${driverShift === "Anytime" ? strings.shiftAnytime : driverShift}</p>
                 <p>${strings.cardPlate} ${driver.plate}</p>
             `;
             resulted.appendChild(card);
