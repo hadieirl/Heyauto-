@@ -4,7 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HeyAuto!</title>
-   <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        /* Modern UI layouts for the location selector */
+        .location-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 15px auto;
+        }
+        .location-container select {
+            flex: 1;
+            margin-bottom: 0 !important; /* Override standard selector spacing */
+        }
+        .gps-btn {
+            background-color: #FFC107;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+        .gps-btn:hover {
+            background-color: #e0a800;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,15 +43,18 @@
 <div class="ambient-glow-2"></div>
                                                                                 
 <div id="customerPage" class="active-view">
-<select id="location">
-    <option value="" disabled selected>Select a place</option>
-    <option>Kizhisseri</option>
-    <option>Kondotty</option>
-    <option>Mongam</option>
-    <option>Areekode</option>
-    <option>Ramanatukara</option>
-    <option>Coimbatore</option>
-</select>
+    <div class="location-container">
+        <select id="location">
+            <option value="" disabled selected>Select a place</option>
+            <option value="Kizhisseri">Kizhisseri</option>
+            <option value="Kondotty">Kondotty</option>
+            <option value="Mongam">Mongam</option>
+            <option value="Areekode">Areekode</option>
+            <option value="Ramanatukara">Ramanatukara</option>
+            <option value="Coimbatore">Coimbatore</option>
+        </select>
+        <button id="gpsBtn" class="gps-btn" title="Find nearest location">📍 Near Me</button>
+    </div>
 
     <div class="app">
         <div class="appi">
@@ -58,7 +91,6 @@
 
         <div class="driver-card" id="profileCardRoot" style="margin-top:5px; width:100%;">
             <div class="driver-banner"></div>
-            <!-- Render Driver Profile Chosen Vehicle Model -->
             <img id="profAutoImg" class="card-auto-img" src="cng.png" alt="Auto Variant Layout">
             <h3 id="profName">👤 --</h3>
             <p id="profGender">🧬 Gender: --</p>
@@ -68,6 +100,7 @@
             <p id="profShift">🕒 Shift: --</p>
             <p id="profPlate">🚕 --</p>
         </div>
+        <button class="secondary-btn" id="openEditProfile" style="border-color: #FFC107;">⚙️ Edit Profile</button>
         <button class="secondary-btn" id="logoutBtn">Logout Account</button>
         <button class="danger-btn" id="deleteBtn">Delete Account</button>
     </div>
@@ -96,7 +129,7 @@
             <div class="error" id="genderError"></div>
 
             <select id="fuel" class="signup-select">
-                <option value="" disabled selected>Select Fuel Type</option>
+               <option value="Diesel">Diesel</option>
                 <option value="CNG">CNG</option>
                 <option value="Petrol">Petrol</option>
                 <option value="Electric">Electric</option>
@@ -104,36 +137,35 @@
             <div class="error" id="fuelError"></div>
 
             <select id="place">
-                <option>Kizhisseri</option>
-                <option>Kondotty</option>
-                <option>Mongam</option>
-                <option>Areekode</option>
-                <option>Ramanatukara</option>
-                <option>Coimbature</option>
+                <option value="Kizhisseri">Kizhisseri</option>
+                <option value="Kondotty">Kondotty</option>
+                <option value="Mongam">Mongam</option>
+                <option value="Areekode">Areekode</option>
+                <option value="Ramanatukara">Ramanatukara</option>
+                <option value="Coimbatore">Coimbatore</option>
             </select>
             
-            <!-- Dynamic Choice Selector Framework Component Integration -->
             <span class="auto-selector-label">Choose Your Auto Variant:</span>
             <div class="auto-selector" id="autoSelectorContainer">
                 <div class="auto-option selected" data-value="cng.png">
                     <img src="cng.png" alt="cng.png Model Variant">
-                    <p>cng.png</p>
+                    <p>CNG</p>
                 </div>
                 <div class="auto-option" data-value="karand.png">
                     <img src="karand.png" alt="karand.png Model Variant">
-                    <p>karand.png</p>
+                    <p>Electric</p>
                 </div>
                 <div class="auto-option" data-value="kotta.png">
                     <img src="kotta.png" alt="kotta.png Model Variant">
-                    <p>kotta.png</p>
+                    <p>Goods</p>
                 </div>
                 <div class="auto-option" data-value="kutti.png">
                     <img src="kutti.png" alt="kutti.png Model Variant">
-                    <p>kutti.png</p>
+                    <p>kutti</p>
                 </div>
                 <div class="auto-option" data-value="Valuth.png">
                     <img src="Valuth.png" alt="Valuth.png Model Variant">
-                    <p>Valuth.png</p>
+                    <p>Ape type</p>
                 </div>
             </div>
             
@@ -153,7 +185,6 @@
     </div>
 </div>
 
-<!-- ================= AESTHETIC FOOTER ================= -->
 <footer class="app-footer">
     <div class="footer-bottom">
         <div class="footer-left">
@@ -169,8 +200,6 @@
     </div>
 </footer>
 
-<!-- ================= MODALS (Hidden by default) ================= -->
-<!-- Privacy Modal -->
 <div id="privacyModal" class="legal-modal">
     <div class="legal-modal-content">
         <span class="close-modal" id="closePrivacy">&times;</span>
@@ -180,13 +209,58 @@
     </div>
 </div>
 
-<!-- Terms Modal -->
 <div id="termsModal" class="legal-modal">
     <div class="legal-modal-content">
         <span class="close-modal" id="closeTerms">&times;</span>
         <h2>Terms & Conditions</h2>
         <p>By using <strong>HeyAuto!</strong>, you agree to conduct yourself respectfully. Drivers must provide accurate vehicle information and maintain their duty status honestly.</p>
         <p>Passengers must ensure they contact the correct drivers for their hubs. HeyAuto! serves strictly as a connecting platform and is not liable for offline interactions.</p>
+    </div>
+</div>
+
+<div id="editProfileModal" class="legal-modal">
+    <div class="legal-modal-content" style="max-height: 90vh; overflow-y: auto;">
+        <span class="close-modal" id="closeEditProfile">&times;</span>
+        <h2>Edit Profile</h2>
+        <div style="height:15px;"></div>
+        
+        <label class="status-label" style="text-align: left; font-weight: bold;">Phone Number</label>
+        <input type="text" id="editPhone" placeholder="10 digit phone number">
+        <div class="error" id="editPhoneError"></div>
+
+        <label class="status-label" style="text-align: left; font-weight: bold;">Fuel Type</label>
+        <select id="editFuel" class="signup-select">
+            <option value="Electric">Diesel</option>
+            <option value="CNG">CNG</option>
+            <option value="Petrol">Petrol</option>
+            <option value="Electric">Electric</option>
+        </select>
+        
+        <span class="auto-selector-label" style="font-weight: bold;">Choose Your Auto Variant:</span>
+        <div class="auto-selector" id="editAutoSelectorContainer">
+            <div class="auto-option" data-value="cng.png">
+                <img src="cng.png" alt="CNG">
+                <p>CNG</p>
+            </div>
+            <div class="auto-option" data-value="karand.png">
+                <img src="karand.png" alt="Electric">
+                <p>Electric</p>
+            </div>
+            <div class="auto-option" data-value="kotta.png">
+                <img src="kotta.png" alt="Goods">
+                <p>Goods</p>
+            </div>
+            <div class="auto-option" data-value="kutti.png">
+                <img src="kutti.png" alt="kutti">
+                <p>kutti</p>
+            </div>
+            <div class="auto-option" data-value="Valuth.png">
+                <img src="Valuth.png" alt="Ape type">
+                <p>Ape type</p>
+            </div>
+        </div>
+        
+        <button class="action-btn" id="saveProfileBtn">Save Changes</button>
     </div>
 </div>
 
@@ -211,7 +285,8 @@ import {
     onAuthStateChanged,
     deleteUser,
     EmailAuthProvider,
-    reauthenticateWithCredential
+    reauthenticateWithCredential,
+    updateEmail
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
@@ -232,12 +307,14 @@ let isSignUpMode = false;
 let currentUID = null;
 let currentStatus = "Active"; 
 let currentDriverPhone = ""; 
-let selectedAutoImage = "cng.png"; // Track selection choice states safely
+let selectedAutoImage = "cng.png"; 
+let editSelectedAutoImage = "cng.png";
 
 const locationSelect = document.getElementById("location");
 const result = document.getElementById("result");
 const findBtn = document.getElementById("findBtn");
 const resulted = document.getElementById("resulted");
+const gpsBtn = document.getElementById("gpsBtn");
 
 const driverAuthView = document.getElementById("driverAuthView");
 const driverProfileView = document.getElementById("driverProfileView");
@@ -271,13 +348,99 @@ const profileCardRoot = document.getElementById("profileCardRoot");
 const profShift = document.getElementById("profShift"); 
 const profAutoImg = document.getElementById("profAutoImg");
 
-// Map Input Handler Listeners over Auto Selection Option Items
+// Edit Profile Targets
+const editProfileModal = document.getElementById("editProfileModal");
+const openEditProfile = document.getElementById("openEditProfile");
+const closeEditProfile = document.getElementById("closeEditProfile");
+const editPhoneInput = document.getElementById("editPhone");
+const editFuelSelect = document.getElementById("editFuel");
+const editPhoneError = document.getElementById("editPhoneError");
+const saveProfileBtn = document.getElementById("saveProfileBtn");
+
+// Coordinates Mapping Dataset for Calculations
+const hubCoordinates = [
+    { name: "Kizhisseri", lat: 11.1833, lng: 76.0167 },
+    { name: "Kondotty", lat: 11.1495, lng: 75.9620 },
+    { name: "Mongam", lat: 11.1345, lng: 75.9612 },
+    { name: "Areekode", lat: 11.2372, lng: 76.0506 },
+    { name: "Ramanatukara", lat: 11.1910, lng: 75.8679 },
+    { name: "Coimbatore", lat: 11.0168, lng: 76.9558 }
+];
+
+// Haversine Distance Formula Algorithm Implementation
+function calculateHaversineDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radius of the earth in km
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = 
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
+    ; 
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
+    return R * c; // Distance in km
+}
+
+// Geolocation Handling logic integration
+gpsBtn.addEventListener("click", () => {
+    if (!navigator.geolocation) {
+        alert("Geolocation is not supported by your web browser setup.");
+        return;
+    }
+
+    gpsBtn.textContent = "⏳...";
+    gpsBtn.disabled = true;
+
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const passengerLat = position.coords.latitude;
+            const passengerLng = position.coords.longitude;
+
+            let closestHub = null;
+            let minimumDistance = Infinity;
+
+            hubCoordinates.forEach(hub => {
+                const distance = calculateHaversineDistance(passengerLat, passengerLng, hub.lat, hub.lng);
+                if (distance < minimumDistance) {
+                    minimumDistance = distance;
+                    closestHub = hub.name;
+                }
+            });
+
+            if (closestHub) {
+                locationSelect.value = closestHub;
+                loadAllDrivers(); // Instantly look up matching cars automatically
+            }
+            
+            gpsBtn.textContent = "📍 Near Me";
+            gpsBtn.disabled = false;
+        },
+        (error) => {
+            console.error("GPS Error: ", error);
+            alert("Unable to grab current location context configuration. Choose manually.");
+            gpsBtn.textContent = "📍 Near Me";
+            gpsBtn.disabled = false;
+        },
+        { enableHighAccuracy: true, timeout: 6000 }
+    );
+});
+
+// Creation selector options logic
 const autoOptions = document.querySelectorAll("#autoSelectorContainer .auto-option");
 autoOptions.forEach(opt => {
     opt.addEventListener("click", () => {
         autoOptions.forEach(o => o.classList.remove("selected"));
         opt.classList.add("selected");
         selectedAutoImage = opt.getAttribute("data-value");
+    });
+});
+
+// Edit selector options logic
+const editAutoOptions = document.querySelectorAll("#editAutoSelectorContainer .auto-option");
+editAutoOptions.forEach(opt => {
+    opt.addEventListener("click", () => {
+        editAutoOptions.forEach(o => o.classList.remove("selected"));
+        opt.classList.add("selected");
+        editSelectedAutoImage = opt.getAttribute("data-value");
     });
 });
 
@@ -333,7 +496,6 @@ async function enforceDutyStatus(shift) {
     }
 }
 
-// Manual Break controls (user can click these at any time to override)
 statusActiveBtn.addEventListener("click", () => {
     if (currentStatus !== "Active") {
         updateStatusUI("Active");
@@ -355,8 +517,6 @@ dutyTimeSelect.addEventListener("change", async (e) => {
         const docRef = doc(db, "Drivers", currentUID);
         await updateDoc(docRef, { shift: newShift });
         profShift.textContent = `🕒 Shift: ${newShift}`;
-        
-        // Auto-check time when shift is changed
         enforceDutyStatus(newShift);
     } catch (error) {
         console.error("Error updating shift field", error);
@@ -371,45 +531,44 @@ function getFuelClass(fuel) {
     return "card-petrol";
 }
 
+async function fetchAndPopulateProfile(userUID) {
+    try {
+        const docRef = doc(db, "Drivers", userUID);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            currentDriverPhone = data.phone; 
+            document.getElementById("welcomeDriver").textContent = `Welcome, ${data.name}!`;
+            document.getElementById("profName").textContent = `👤 ${data.name}`;
+            document.getElementById("profGender").textContent = `🧬 Gender: ${data.gender || '--'}`;
+            document.getElementById("profPhone").textContent = `📞 ${data.phone}`;
+            document.getElementById("profPlace").textContent = `📍 ${data.place}`;
+            document.getElementById("profFuel").textContent = `⛽ Fuel: ${data.fuel || '--'}`;
+            document.getElementById("profPlate").textContent = `🚕 Plate: ${data.plate}`;
+            
+            profAutoImg.src = data.autoImage || "cng.png";
+            
+            const dbShift = data.shift || "Anytime";
+            dutyTimeSelect.value = dbShift;
+            profShift.textContent = `🕒 Shift: ${dbShift}`;
+            
+            profileCardRoot.className = "driver-card " + getFuelClass(data.fuel);
+
+            const dbStatus = data.status || "Active";
+            updateStatusUI(dbStatus);
+            enforceDutyStatus(dbShift);
+        }
+    } catch (e) {
+        console.error("Error loading profile layout", e);
+    }
+}
+
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         currentUID = user.uid;
         driverAuthView.classList.add("hidden-field");
         driverProfileView.classList.remove("hidden-field");
-        
-        try {
-            const docRef = doc(db, "Drivers", user.uid);
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                currentDriverPhone = data.phone; 
-                document.getElementById("welcomeDriver").textContent = `Welcome, ${data.name}!`;
-                document.getElementById("profName").textContent = `👤 ${data.name}`;
-                document.getElementById("profGender").textContent = `🧬 Gender: ${data.gender || '--'}`;
-                document.getElementById("profPhone").textContent = `📞 ${data.phone}`;
-                document.getElementById("profPlace").textContent = `📍 ${data.place}`;
-                document.getElementById("profFuel").textContent = `⛽ Fuel: ${data.fuel || '--'}`;
-                document.getElementById("profPlate").textContent = `🚕 Plate: ${data.plate}`;
-                
-                // Fetch and showcase chosen asset file in profile layout
-                profAutoImg.src = data.autoImage || "cng.png";
-                
-                const dbShift = data.shift || "Anytime";
-                dutyTimeSelect.value = dbShift;
-                profShift.textContent = `🕒 Shift: ${dbShift}`;
-                
-                profileCardRoot.className = "driver-card " + getFuelClass(data.fuel);
-
-                // Load initial DB status just in case we need it, but enforce based on time right after
-                const dbStatus = data.status || "Active";
-                updateStatusUI(dbStatus);
-                
-                // Check time strictly on load
-                enforceDutyStatus(dbShift);
-            }
-        } catch (e) {
-            console.error("Error loading profile layout", e);
-        }
+        await fetchAndPopulateProfile(user.uid);
     } else {
         currentUID = null;
         currentDriverPhone = "";
@@ -501,7 +660,7 @@ authSubmitBtn.addEventListener("click", async () => {
                 place: placeSelect.value,
                 status: "Active",
                 shift: "Anytime",
-                autoImage: selectedAutoImage // Save selection key parameter down within document collections mapping
+                autoImage: selectedAutoImage
             });
 
             alert("Driver account created and uploaded successfully!");
@@ -571,8 +730,97 @@ deleteBtn.addEventListener("click", async () => {
     }
 });
 
+// ================= EDIT PROFILE CONTROL LOGIC =================
+openEditProfile.addEventListener("click", async () => {
+    if (!auth.currentUser || !currentDriverPhone) return;
+    
+    editPhoneError.textContent = "";
+    editPhoneInput.value = currentDriverPhone;
+    
+    try {
+        const docSnap = await getDoc(doc(db, "Drivers", auth.currentUser.uid));
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            editFuelSelect.value = data.fuel || "CNG";
+            editSelectedAutoImage = data.autoImage || "cng.png";
+            
+            editAutoOptions.forEach(opt => {
+                if (opt.getAttribute("data-value") === editSelectedAutoImage) {
+                    opt.classList.add("selected");
+                } else {
+                    opt.classList.remove("selected");
+                }
+            });
+        }
+    } catch(e) {
+        console.error(e);
+    }
+    
+    editProfileModal.style.display = "flex";
+});
+
+closeEditProfile.addEventListener("click", () => {
+    editProfileModal.style.display = "none";
+});
+
+saveProfileBtn.addEventListener("click", async () => {
+    const newPhone = editPhoneInput.value.trim();
+    const newFuel = editFuelSelect.value;
+    editPhoneError.textContent = "";
+    
+    if (newPhone === "") {
+        editPhoneError.textContent = "This field is required";
+        return;
+    } else if (!/^\d{10}$/.test(newPhone)) {
+        editPhoneError.textContent = "Enter exactly 10 digits";
+        return;
+    }
+    
+    const user = auth.currentUser;
+    if (!user) return;
+    
+    try {
+        // Handle changes cleanly if driver modifications alter login credentials structure
+        if (newPhone !== currentDriverPhone) {
+            const typedPassword = prompt("Changing phone numbers alters your login ID. Please enter your account password to authorize modifications:");
+            if (typedPassword === null) return;
+            if (typedPassword.trim() === "") {
+                alert("Password cannot be blank.");
+                return;
+            }
+            
+            const oldEmail = formatEmail(currentDriverPhone);
+            const credential = EmailAuthProvider.credential(oldEmail, typedPassword);
+            await reauthenticateWithCredential(user, credential);
+            
+            const newEmail = formatEmail(newPhone);
+            await updateEmail(user, newEmail);
+        }
+        
+        const docRef = doc(db, "Drivers", user.uid);
+        await updateDoc(docRef, {
+            phone: newPhone,
+            fuel: newFuel,
+            autoImage: editSelectedAutoImage
+        });
+        
+        alert("Profile details updated successfully!");
+        editProfileModal.style.display = "none";
+        await fetchAndPopulateProfile(user.uid);
+        
+    } catch (err) {
+        console.error(err);
+        if (err.code === "auth/email-already-in-use") {
+            alert("Update Failed: That phone number is already registered under another account profile.");
+        } else {
+            alert("Update Profile Failed: " + err.message);
+        }
+    }
+});
+
 async function loadAllDrivers() {
     const selectedLocation = locationSelect.value;
+    if (!selectedLocation) return;
     result.textContent = `Showing autos for location: ${selectedLocation}`;
     resulted.innerHTML = "";
 
@@ -621,30 +869,27 @@ async function loadAllDrivers() {
             const driverFuel = driver.fuel || "Not specified";
             const driverShift = driver.shift || "Anytime"; 
             const fuelThemeClass = getFuelClass(driverFuel);
-            
-            // Extract the saved profile dynamic auto variant configuration key reference
             const driverAutoImg = driver.autoImage || "cng.png";
 
             const card = document.createElement("div");
             card.className = `driver-card ${fuelThemeClass}`;
-card.innerHTML = `
-    <div class="driver-banner"></div>
-    <img src="${driverAutoImg}" class="card-auto-img" alt="Auto Variant Selection Preview">
-    <span class="badge ${badgeClass}">${badgeText}</span>
-    <h3>👤 ${driver.name}</h3>
-    
-    
-    <p class="call-btn-container">
-        <a href="tel:${driver.phone}" class="animated-call-btn">
-            <span>📞 Call Driver</span>
-        </a>
-    </p>
-<p>🧬 <strong>Gender:</strong> ${driverGender}</p>
-    <p>📍 <strong>Hub:</strong> ${driver.place}</p>
-    <p>⛽ <strong>Fuel Type:</strong> <span class="fuel-txt">${driverFuel}</span></p>
-    <p>🕒 <strong>Shift:</strong> ${driverShift}</p>
-    <p>Taxi <strong>Number Plate:</strong> ${driver.plate}</p>
-`;
+            card.innerHTML = `
+                <div class="driver-banner"></div>
+                <img src="${driverAutoImg}" class="card-auto-img" alt="Auto Variant Selection Preview">
+                <span class="badge ${badgeClass}">${badgeText}</span>
+                <h3>👤 ${driver.name}</h3>
+                
+                <p class="call-btn-container">
+                    <a href="tel:${driver.phone}" class="animated-call-btn">
+                        <span>📞 Call Driver</span>
+                    </a>
+                </p>
+                <p>🧬 <strong>Gender:</strong> ${driverGender}</p>
+                <p>📍 <strong>Hub:</strong> ${driver.place}</p>
+                <p>⛽ <strong>Fuel Type:</strong> <span class="fuel-txt">${driverFuel}</span></p>
+                <p>🕒 <strong>Shift:</strong> ${driverShift}</p>
+                <p>Taxi <strong>Number Plate:</strong> ${driver.plate}</p>
+            `;
             resulted.appendChild(card);
         });
 
@@ -711,10 +956,10 @@ document.getElementById("closeTerms").addEventListener("click", () => {
     termsModal.style.display = "none";
 });
 
-// Close modals if the user clicks outside the modal content container box
 window.addEventListener("click", (e) => {
     if (e.target === privacyModal) privacyModal.style.display = "none";
     if (e.target === termsModal) termsModal.style.display = "none";
+    if (e.target === editProfileModal) editProfileModal.style.display = "none";
 });
 
 </script>
