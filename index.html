@@ -6,9 +6,35 @@
     <title>HeyAuto!</title>
     <link rel="stylesheet" href="index.css">
     <style>
-        /* Modern UI layouts for the location selector */
-        .location-container {
+        /* Top navbar layout for Language Selector */
+        .top-navbar {
             display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px;
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        .lang-select {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+        }
+        .lang-select option {
+            background-color: #121212;
+            color: #fff;
+        }
+        
+        /* Modern UI layouts for the location selectors */
+        .location-container {
+            display: inline-block;
             gap: 10px;
             align-items: center;
             width: 100%;
@@ -41,19 +67,68 @@
 
 <div class="ambient-glow-1"></div>
 <div class="ambient-glow-2"></div>
+
+<div class="top-navbar">
+    <select id="langSelector" class="lang-select">
+        <option value="en">🌐 English</option>
+        <option value="ml">🌐 മലയാളം</option>
+    </select>
+</div>
                                                                                 
 <div id="customerPage" class="active-view">
     <div class="location-container">
         <select id="location">
-            <option value="" disabled selected>Select a place</option>
-            <option value="Kizhisseri">Kizhisseri</option>
-            <option value="Kondotty">Kondotty</option>
-            <option value="Mongam">Mongam</option>
-            <option value="Areekode">Areekode</option>
-            <option value="Ramanatukara">Ramanatukara</option>
-            <option value="Coimbatore">Coimbatore</option>
+            <option value="" disabled selected data-key="selectPlace">Select a Place</option>
+
+            <option value="Kondotty" data-key="locKondotty">Kondotty</option>
+            <option value="Manjeri" data-key="locManjeri">Manjeri</option>
+            <option value="Malappuram" data-key="locMalappuram">Malappuram</option>
+            <option value="Perinthalmanna" data-key="locPerinthalmanna">Perinthalmanna</option>
+            <option value="Tirur" data-key="locTirur">Tirur</option>
+            <option value="Kottakkal" data-key="locKottakkal">Kottakkal</option>
+            <option value="Nilambur" data-key="locNilambur">Nilambur</option>
+            <option value="Ponnani" data-key="locPonnani">Ponnani</option>
+            <option value="Valanchery" data-key="locValanchery">Valanchery</option>
+            <option value="Parappanangadi" data-key="locParappanangadi">Parappanangadi</option>
+            <option value="Tanur" data-key="locTanur">Tanur</option>
+            <option value="Tirurangadi" data-key="locTirurangadi">Tirurangadi</option>
+
+            <option value="Kizhissery" data-key="locKizhissery">Kizhissery</option>
+            <option value="Pulikkal" data-key="locPulikkal">Pulikkal</option>
+            <option value="Mongam" data-key="locMongam">Mongam</option>
+            <option value="Vazhakkad" data-key="locVazhakkad">Vazhakkad</option>
+            <option value="Vazhayoor" data-key="locVazhayoor">Vazhayoor</option>
+            <option value="Cheekode" data-key="locCheekode">Cheekode</option>
+            <option value="Cherukavu" data-key="locCherukavu">Cherukavu</option>
+            <option value="Nediyiruppu" data-key="locNediyiruppu">Nediyiruppu</option>
+            <option value="Morayur" data-key="locMorayur">Morayur</option>
+            <option value="Kuzhimanna" data-key="locKuzhimanna">Kuzhimanna</option>
+            <option value="Kavanur" data-key="locKavanur">Kavanur</option>
+            <option value="Areekode" data-key="locAreekode">Areekode</option>
+            <option value="Edavanna" data-key="locEdavanna">Edavanna</option>
+
+            <option value="Pandikkad" data-key="locPandikkad">Pandikkad</option>
+            <option value="Wandoor" data-key="locWandoor">Wandoor</option>
+            <option value="Karuvarakundu" data-key="locKaruvarakundu">Karuvarakundu</option>
+            <option value="Vengara" data-key="locVengara">Vengara</option>
+            <option value="Chemmad" data-key="locChemmad">Chemmad</option>
+            <option value="Kalikavu" data-key="locKalikavu">Kalikavu</option>
+            <option value="Mampad" data-key="locMampad">Mampad</option>
+            <option value="Melattur" data-key="locMelattur">Melattur</option>
+            <option value="Angadipuram" data-key="locAngadipuram">Angadipuram</option>
+            <option value="Thirunavaya" data-key="locThirunavaya">Thirunavaya</option>
+            <option value="Kuttippuram" data-key="locKuttippuram">Kuttippuram</option>
+            <option value="Valavannur" data-key="locValavannur">Valavannur</option>
+            <option value="Othukkungal" data-key="locOthukkungal">Othukkungal</option>
+            <option value="Parappur" data-key="locParappur">Parappur</option>
+            <option value="Kodur" data-key="locKodur">Kodur</option>
+            <option value="Pookkottur" data-key="locPookkottur">Pookkottur</option>
+            <option value="Anakkayam" data-key="locAnakkayam">Anakkayam</option>
+            <option value="Elamkulam" data-key="locElamkulam">Elamkulam</option>
+            <option value="Peruvallur" data-key="locPeruvallur">Peruvallur</option>
+            <option value="Thenhipalam" data-key="locThenhipalam">Thenhipalam</option>
         </select>
-        <button id="gpsBtn" class="gps-btn" title="Find nearest location">📍 Near Me</button>
+        <button id="gpsBtn" class="gps-btn" title="Find nearest location" data-key="nearMe">📍 Near Me</button>
     </div>
 
     <div class="app">
@@ -61,10 +136,10 @@
             <img class="riksha" style="width:45px;height:45px;" src="mirrored.PNG" alt="Logo">
             <h1 class="hey">ഹേയ് ഓട്ടോ!</h1>
         </div>
-        <button id="findBtn">Find Auto</button>
+        <button id="findBtn" data-key="findAuto">Find Auto</button>
     </div>
 
-    <p id="result">Showing all registered autos</p>
+    <p id="result" data-key="showingAll">Showing all registered autos</p>
     <div id="resulted"></div>
 </div>
 
@@ -73,17 +148,17 @@
         <h1 id="welcomeDriver">Welcome!</h1>
         
         <div class="status-container">
-            <span class="status-label">Duty Status</span>
+            <span class="status-label" data-key="dutyStatus">Duty Status</span>
             <div class="status-selector">
-                <div class="status-option" id="statusActiveBtn">Active</div>
-                <div class="status-option" id="statusInactiveBtn">Inactive</div>
+                <div class="status-option" id="statusActiveBtn" data-key="statusActive">Active</div>
+                <div class="status-option" id="statusInactiveBtn" data-key="statusInactive">Inactive</div>
             </div>
         </div>
 
         <div class="status-container" style="margin-top: 10px;">
-            <span class="status-label">Duty Shift</span>
+            <span class="status-label" data-key="dutyShift">Duty Shift</span>
             <select id="dutyTimeSelect" class="shift-select">
-                <option value="Anytime">Anytime</option>
+                <option value="Anytime" data-key="shiftAnytime">Anytime</option>
                 <option value="6 AM - 4 PM">6 AM - 4 PM</option>
                 <option value="8 PM - 4 AM">8 PM - 4 AM</option>
             </select>
@@ -100,9 +175,9 @@
             <p id="profShift">🕒 Shift: --</p>
             <p id="profPlate">🚕 --</p>
         </div>
-        <button class="secondary-btn" id="openEditProfile" style="border-color: #FFC107;">⚙️ Edit Profile</button>
-        <button class="secondary-btn" id="logoutBtn">Logout Account</button>
-        <button class="danger-btn" id="deleteBtn">Delete Account</button>
+        <button class="secondary-btn" id="openEditProfile" style="border-color: #FFC107;" data-key="editProfile">⚙️ Edit Profile</button>
+        <button class="secondary-btn" id="logoutBtn" data-key="logoutAccount">Logout Account</button>
+        <button class="danger-btn" id="deleteBtn" data-key="deleteAccount">Delete Account</button>
     </div>
 
     <div class="app" id="driverAuthView">
@@ -122,79 +197,124 @@
             <div class="error" id="plateError"></div>
 
             <select id="gender" class="signup-select">
-                <option value="" disabled selected>Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
+                <option value="" disabled selected data-key="selectGender">Select Gender</option>
+                <option value="Male" data-key="genderMale">Male</option>
+                <option value="Female" data-key="genderFemale">Female</option>
             </select>
             <div class="error" id="genderError"></div>
 
             <select id="fuel" class="signup-select">
-               <option value="Diesel">Diesel</option>
-                <option value="CNG">CNG</option>
-                <option value="Petrol">Petrol</option>
-                <option value="Electric">Electric</option>
+                <option value="Diesel" data-key="fuelDiesel">Diesel</option>
+                <option value="CNG" data-key="fuelCNG">CNG</option>
+                <option value="Petrol" data-key="fuelPetrol">Petrol</option>
+                <option value="Electric" data-key="fuelElectric">Electric</option>
             </select>
             <div class="error" id="fuelError"></div>
 
-            <select id="place">
-                <option value="Kizhisseri">Kizhisseri</option>
-                <option value="Kondotty">Kondotty</option>
-                <option value="Mongam">Mongam</option>
-                <option value="Areekode">Areekode</option>
-                <option value="Ramanatukara">Ramanatukara</option>
-                <option value="Coimbatore">Coimbatore</option>
-            </select>
+            <div class="location-container">
+                <select id="place">
+                    <option value="" disabled selected data-key="selectStand">Select Stand Location</option>
+                    <option value="Kondotty" data-key="locKondotty">Kondotty</option>
+                    <option value="Manjeri" data-key="locManjeri">Manjeri</option>
+                    <option value="Malappuram" data-key="locMalappuram">Malappuram</option>
+                    <option value="Perinthalmanna" data-key="locPerinthalmanna">Perinthalmanna</option>
+                    <option value="Tirur" data-key="locTirur">Tirur</option>
+                    <option value="Kottakkal" data-key="locKottakkal">Kottakkal</option>
+                    <option value="Nilambur" data-key="locNilambur">Nilambur</option>
+                    <option value="Ponnani" data-key="locPonnani">Ponnani</option>
+                    <option value="Valanchery" data-key="locValanchery">Valanchery</option>
+                    <option value="Parappanangadi" data-key="locParappanangadi">Parappanangadi</option>
+                    <option value="Tanur" data-key="locTanur">Tanur</option>
+                    <option value="Tirurangadi" data-key="locTirurangadi">Tirurangadi</option>
+
+                    <option value="Kizhissery" data-key="locKizhissery">Kizhissery</option>
+                    <option value="Pulikkal" data-key="locPulikkal">Pulikkal</option>
+                    <option value="Mongam" data-key="locMongam">Mongam</option>
+                    <option value="Vazhakkad" data-key="locVazhakkad">Vazhakkad</option>
+                    <option value="Vazhayoor" data-key="locVazhayoor">Vazhayoor</option>
+                    <option value="Cheekode" data-key="locCheekode">Cheekode</option>
+                    <option value="Cherukavu" data-key="locCherukavu">Cherukavu</option>
+                    <option value="Nediyiruppu" data-key="locNediyiruppu">Nediyiruppu</option>
+                    <option value="Morayur" data-key="locMorayur">Morayur</option>
+                    <option value="Kuzhimanna" data-key="locKuzhimanna">Kuzhimanna</option>
+                    <option value="Kavanur" data-key="locKavanur">Kavanur</option>
+                    <option value="Areekode" data-key="locAreekode">Areekode</option>
+                    <option value="Edavanna" data-key="locEdavanna">Edavanna</option>
+
+                    <option value="Pandikkad" data-key="locPandikkad">Pandikkad</option>
+                    <option value="Wandoor" data-key="locWandoor">Wandoor</option>
+                    <option value="Karuvarakundu" data-key="locKaruvarakundu">Karuvarakundu</option>
+                    <option value="Vengara" data-key="locVengara">Vengara</option>
+                    <option value="Chemmad" data-key="locChemmad">Chemmad</option>
+                    <option value="Kalikavu" data-key="locKalikavu">Kalikavu</option>
+                    <option value="Mampad" data-key="locMampad">Mampad</option>
+                    <option value="Melattur" data-key="locMelattur">Melattur</option>
+                    <option value="Angadipuram" data-key="locAngadipuram">Angadipuram</option>
+                    <option value="Thirunavaya" data-key="locThirunavaya">Thirunavaya</option>
+                    <option value="Kuttippuram" data-key="locKuttippuram">Kuttippuram</option>
+                    <option value="Valavannur" data-key="locValavannur">Valavannur</option>
+                    <option value="Othukkungal" data-key="locOthukkungal">Othukkungal</option>
+                    <option value="Parappur" data-key="locParappur">Parappur</option>
+                    <option value="Kodur" data-key="locKodur">Kodur</option>
+                    <option value="Pookkottur" data-key="locPookkottur">Pookkottur</option>
+                    <option value="Anakkayam" data-key="locAnakkayam">Anakkayam</option>
+                    <option value="Elamkulam" data-key="locElamkulam">Elamkulam</option>
+                    <option value="Peruvallur" data-key="locPeruvallur">Peruvallur</option>
+                    <option value="Thenhipalam" data-key="locThenhipalam">Thenhipalam</option>
+                </select>
+                <button id="driverGpsBtn" type="button" class="gps-btn" title="Detect current stand location" data-key="standBtn">📍 Stand</button>
+            </div>
             
-            <span class="auto-selector-label">Choose Your Auto Variant:</span>
+            <span class="auto-selector-label" data-key="chooseVariant">Choose Your Auto Variant:</span>
             <div class="auto-selector" id="autoSelectorContainer">
                 <div class="auto-option selected" data-value="cng.png">
-                    <img src="cng.png" alt="cng.png Model Variant">
-                    <p>CNG</p>
+                    <img src="cng.png" alt="CNG Variant">
+                    <p data-key="variantCNG">CNG</p>
                 </div>
                 <div class="auto-option" data-value="karand.png">
-                    <img src="karand.png" alt="karand.png Model Variant">
-                    <p>Electric</p>
+                    <img src="karand.png" alt="Electric Variant">
+                    <p data-key="variantElectric">Electric</p>
                 </div>
                 <div class="auto-option" data-value="kotta.png">
-                    <img src="kotta.png" alt="kotta.png Model Variant">
-                    <p>Goods</p>
+                    <img src="kotta.png" alt="Goods Variant">
+                    <p data-key="variantGoods">Goods</p>
                 </div>
                 <div class="auto-option" data-value="kutti.png">
-                    <img src="kutti.png" alt="kutti.png Model Variant">
-                    <p>kutti</p>
+                    <img src="kutti.png" alt="Kutti Variant">
+                    <p data-key="variantKutti">kutti</p>
                 </div>
                 <div class="auto-option" data-value="Valuth.png">
-                    <img src="Valuth.png" alt="Valuth.png Model Variant">
-                    <p>Ape type</p>
+                    <img src="Valuth.png" alt="Ape Variant">
+                    <p data-key="variantApe">Ape type</p>
                 </div>
             </div>
             
             <div style="height:15px;"></div>
         </div>
 
-        <button class="action-btn" id="authSubmitBtn">Sign In</button>
-        <p class="toggle-link" id="authToggleLink">New driver? Create an account (Sign Up)</p>
+        <button class="action-btn" id="authSubmitBtn" data-key="signInBtn">Sign In</button>
+        <p class="toggle-link" id="authToggleLink" data-key="toggleSignUp">New driver? Create an account (Sign Up)</p>
     </div>
 </div>
 
 <div class="bottom-nav-container">
     <div class="bottom-nav">
         <div class="nav-slider" id="navSlider"></div>
-        <button id="customerBtn" class="active-tab">🛺 Passenger</button>
-        <button id="driverBtn">👨‍✈️ Driver</button>
+        <button id="customerBtn" class="active-tab" data-key="navPassenger">🛺 Passenger</button>
+        <button id="driverBtn" data-key="navDriver">👨‍✈️ Driver</button>
     </div>
 </div>
 
 <footer class="app-footer">
     <div class="footer-bottom">
         <div class="footer-left">
-            <span>🌐 English (India)</span>
+            <span id="footerLangText">🌐 English (India)</span>
         </div>
         <div class="footer-right">
-            <span class="footer-item">🛠️ Dev: Hadi Shanavas</span>
-            <a href="tel:8848218875" class="footer-item">📞 Support: 8848218875</a>
-            <a href="#" id="openPrivacy" class="footer-item">Privacy Policy</a>
-            <a href="#" id="openTerms" class="footer-item">Terms of Use</a>
+            <span class="footer-item" data-key="footerDev">🛠️ Dev: Hadi Shanavas</span>
+            <a href="tel:8848218875" class="footer-item" data-key="footerSupport">📞 Support: 8848218875</a>
+            <a href="#" id="openPrivacy" class="footer-item" data-key="footerPrivacy">Privacy Policy</a>
+            <a href="#" id="openTerms" class="footer-item" data-key="footerTerms">Terms of Use</a>
             <span class="footer-item">© 2026 HeyAuto!</span>
         </div>
     </div>
@@ -203,64 +323,64 @@
 <div id="privacyModal" class="legal-modal">
     <div class="legal-modal-content">
         <span class="close-modal" id="closePrivacy">&times;</span>
-        <h2>Privacy Policy</h2>
-        <p>Your privacy is our priority. <strong>HeyAuto!</strong> operates using Google's secure Firebase infrastructure. We guarantee that your personal data, phone numbers, and location details are strictly encrypted.</p>
-        <p><strong>We do not leak, sell, or share your data</strong> with any third parties. Your information is only used to connect drivers and passengers safely within the app.</p>
+        <h2 data-key="modalPrivacyTitle">Privacy Policy</h2>
+        <p data-key="modalPrivacyP1">Your privacy is our priority. <strong>HeyAuto!</strong> operates using Google's secure Firebase infrastructure. We guarantee that your personal data, phone numbers, and location details are strictly encrypted.</p>
+        <p data-key="modalPrivacyP2"><strong>We do not leak, sell, or share your data</strong> with any third parties. Your information is only used to connect drivers and passengers safely within the app.</p>
     </div>
 </div>
 
 <div id="termsModal" class="legal-modal">
     <div class="legal-modal-content">
         <span class="close-modal" id="closeTerms">&times;</span>
-        <h2>Terms & Conditions</h2>
-        <p>By using <strong>HeyAuto!</strong>, you agree to conduct yourself respectfully. Drivers must provide accurate vehicle information and maintain their duty status honestly.</p>
-        <p>Passengers must ensure they contact the correct drivers for their hubs. HeyAuto! serves strictly as a connecting platform and is not liable for offline interactions.</p>
+        <h2 data-key="modalTermsTitle">Terms & Conditions</h2>
+        <p data-key="modalTermsP1">By using <strong>HeyAuto!</strong>, you agree to conduct yourself respectfully. Drivers must provide accurate vehicle information and maintain their duty status honestly.</p>
+        <p data-key="modalTermsP2">Passengers must ensure they contact the correct drivers for their hubs. HeyAuto! serves strictly as a connecting platform and is not liable for offline interactions.</p>
     </div>
 </div>
 
 <div id="editProfileModal" class="legal-modal">
     <div class="legal-modal-content" style="max-height: 90vh; overflow-y: auto;">
         <span class="close-modal" id="closeEditProfile">&times;</span>
-        <h2>Edit Profile</h2>
+        <h2 data-key="modalEditTitle">Edit Profile</h2>
         <div style="height:15px;"></div>
         
-        <label class="status-label" style="text-align: left; font-weight: bold;">Phone Number</label>
+        <label class="status-label" style="text-align: left; font-weight: bold;" data-key="editLabelPhone">Phone Number</label>
         <input type="text" id="editPhone" placeholder="10 digit phone number">
         <div class="error" id="editPhoneError"></div>
 
-        <label class="status-label" style="text-align: left; font-weight: bold;">Fuel Type</label>
+        <label class="status-label" style="text-align: left; font-weight: bold;" data-key="editLabelFuel">Fuel Type</label>
         <select id="editFuel" class="signup-select">
-            <option value="Electric">Diesel</option>
-            <option value="CNG">CNG</option>
-            <option value="Petrol">Petrol</option>
-            <option value="Electric">Electric</option>
+            <option value="Diesel" data-key="fuelDiesel">Diesel</option>
+            <option value="CNG" data-key="fuelCNG">CNG</option>
+            <option value="Petrol" data-key="fuelPetrol">Petrol</option>
+            <option value="Electric" data-key="fuelElectric">Electric</option>
         </select>
         
-        <span class="auto-selector-label" style="font-weight: bold;">Choose Your Auto Variant:</span>
+        <span class="auto-selector-label" style="font-weight: bold;" data-key="chooseVariant">Choose Your Auto Variant:</span>
         <div class="auto-selector" id="editAutoSelectorContainer">
             <div class="auto-option" data-value="cng.png">
                 <img src="cng.png" alt="CNG">
-                <p>CNG</p>
+                <p data-key="variantCNG">CNG</p>
             </div>
             <div class="auto-option" data-value="karand.png">
                 <img src="karand.png" alt="Electric">
-                <p>Electric</p>
+                <p data-key="variantElectric">Electric</p>
             </div>
             <div class="auto-option" data-value="kotta.png">
                 <img src="kotta.png" alt="Goods">
-                <p>Goods</p>
+                <p data-key="variantGoods">Goods</p>
             </div>
             <div class="auto-option" data-value="kutti.png">
                 <img src="kutti.png" alt="kutti">
-                <p>kutti</p>
+                <p data-key="variantKutti">kutti</p>
             </div>
             <div class="auto-option" data-value="Valuth.png">
                 <img src="Valuth.png" alt="Ape type">
-                <p>Ape type</p>
+                <p data-key="variantApe">Ape type</p>
             </div>
         </div>
         
-        <button class="action-btn" id="saveProfileBtn">Save Changes</button>
+        <button class="action-btn" id="saveProfileBtn" data-key="saveChangesBtn">Save Changes</button>
     </div>
 </div>
 
@@ -303,6 +423,285 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+// ================= LANGUAGE DICTIONARIES =================
+const langData = {
+    en: {
+        selectPlace: "Select a Place",
+        nearMe: "📍 Near Me",
+        findAuto: "Find Auto",
+        showingAll: "Showing all registered autos",
+        showingForLoc: "Showing autos for location: ",
+        noDrivers: "No drivers registered on the system yet.",
+        failedLoad: "Failed to load drivers.",
+        dutyStatus: "Duty Status",
+        statusActive: "Active",
+        statusInactive: "Inactive",
+        dutyShift: "Duty Shift",
+        shiftAnytime: "Anytime",
+        editProfile: "⚙️ Edit Profile",
+        logoutAccount: "Logout Account",
+        deleteAccount: "Delete Account",
+        authSignInTitle: "ഓട്ടോക്കാരൻ Sign In",
+        authSignUpTitle: "ഓട്ടോക്കാരൻ Sign Up",
+        phonePlaceholder: "10 digit phone number",
+        passPlaceholder: "Password (min 6 characters)",
+        namePlaceholder: "Driver Name",
+        platePlaceholder: "Vehicle Number (KL 01 AB 1234)",
+        selectGender: "Select Gender",
+        genderMale: "Male",
+        genderFemale: "Female",
+        fuelDiesel: "Diesel",
+        fuelCNG: "CNG",
+        fuelPetrol: "Petrol",
+        fuelElectric: "Electric",
+        selectStand: "Select Stand Location",
+        standBtn: "📍 Stand",
+        chooseVariant: "Choose Your Auto Variant:",
+        variantCNG: "CNG",
+        variantElectric: "Electric",
+        variantGoods: "Goods",
+        variantKutti: "kutti",
+        variantApe: "Ape type",
+        signInBtn: "Sign In",
+        signUpBtn: "Create Account & Sign Up",
+        toggleSignUp: "New driver? Create an account (Sign Up)",
+        toggleSignIn: "Already have an account? Sign In",
+        navPassenger: "🛺 Passenger",
+        navDriver: "👨‍✈️ Driver",
+        footerLang: "🌐 English (India)",
+        footerDev: "🛠️ Dev: Hadi Shanavas",
+        footerSupport: "📞 Support: 8848218875",
+        footerPrivacy: "Privacy Policy",
+        footerTerms: "Terms of Use",
+        modalPrivacyTitle: "Privacy Policy",
+        modalPrivacyP1: "Your privacy is our priority. HeyAuto! operates using Google's secure Firebase infrastructure. We guarantee that your personal data, phone numbers, and location details are strictly encrypted.",
+        modalPrivacyP2: "We do not leak, sell, or share your data with any third parties. Your information is only used to connect drivers and passengers safely within the app.",
+        modalTermsTitle: "Terms & Conditions",
+        modalTermsP1: "By using HeyAuto!, you agree to conduct yourself respectfully. Drivers must provide accurate vehicle information and maintain their duty status honestly.",
+        modalTermsP2: "Passengers must ensure they contact the correct drivers for their hubs. HeyAuto! serves strictly as a connecting platform and is not liable for offline interactions.",
+        modalEditTitle: "Edit Profile",
+        editLabelPhone: "Phone Number",
+        editLabelFuel: "Fuel Type",
+        saveChangesBtn: "Save Changes",
+        reqField: "This field is required",
+        tenDigits: "Enter exactly 10 digits",
+        passMin: "Password must be at least 6 characters",
+        validPlate: "Enter valid format like KL 01 AB 1234",
+        genderMandatory: "Gender selection is mandatory to register.",
+        fuelMandatory: "Fuel type selection is mandatory to register.",
+        standMandatory: "Please select or detect your driver stand location.",
+        regSuccess: "Driver account created and uploaded successfully!",
+        regFailedNum: "Registration failed: This phone number is already registered.",
+        regFailed: "Registration failed: ",
+        loginSuccess: "Logged in successfully!",
+        loginFailed: "Authentication failed: Check phone number or password.",
+        logoutSuccess: "Logged out successfully!",
+        confirmDelete: "Are you sure you want to permanently delete your driver account? This action cannot be undone.",
+        promptPassDelete: "Please enter your password to confirm deletion:",
+        emptyPass: "Password cannot be empty.",
+        sessionLost: "Session lost. Please log in again to delete your account.",
+        deleteSuccess: "Your driver profile has been completely deleted.",
+        deleteFailed: "Deletion failed: Password incorrect or network error.",
+        promptPassUpdate: "Changing phone numbers alters your login ID. Please enter your account password to authorize modifications:",
+        blankPass: "Password cannot be blank.",
+        updateSuccess: "Profile details updated successfully!",
+        updateFailedNum: "Update Failed: That phone number is already registered under another account profile.",
+        updateFailed: "Update Profile Failed: ",
+        welcome: "Welcome, ",
+        cardGender: "🧬 Gender: ",
+        cardFuel: "⛽ Fuel: ",
+        cardShift: "🕒 Shift: ",
+        cardPlate: "🚕 Plate: ",
+        cardHub: "📍 Hub: ",
+        cardCall: "📞 Call Driver",
+        gpsErrSupport: "Geolocation is not supported by your web browser setup.",
+        gpsErrFetch: "Unable to grab current location context configuration. Choose manually.",
+        gpsErrStand: "Unable to grab current stand location. Choose manually.",
+        
+        // Place Names translation map
+        locKondotty: "Kondotty", locManjeri: "Manjeri", locMalappuram: "Malappuram", locPerinthalmanna: "Perinthalmanna",
+        locTirur: "Tirur", locKottakkal: "Kottakkal", locNilambur: "Nilambur", locPonnani: "Ponnani",
+        locValanchery: "Valanchery", locParappanangadi: "Parappanangadi", locTanur: "Tanur", locTirurangadi: "Tirurangadi",
+        locKizhissery: "Kizhissery", locPulikkal: "Pulikkal", locMongam: "Mongam", locVazhakkad: "Vazhakkad",
+        locVazhayoor: "Vazhayoor", locCheekode: "Cheekode", locCherukavu: "Cherukavu", locNediyiruppu: "Nediyiruppu",
+        locMorayur: "Morayur", locKuzhimanna: "Kuzhimanna", locKavanur: "Kavanur", locAreekode: "Areekode",
+        locEdavanna: "Edavanna", locPandikkad: "Pandikkad", locWandoor: "Wandoor", locKaruvarakundu: "Karuvarakundu",
+        locVengara: "Vengara", locChemmad: "Chemmad", locKalikavu: "Kalikavu", locMampad: "Mampad",
+        locMelattur: "Melattur", locAngadipuram: "Angadipuram", locThirunavaya: "Thirunavaya", locKuttippuram: "Kuttippuram",
+        locValavannur: "Valavannur", locOthukkungal: "Othukkungal", locParappur: "Parappur", locKodur: "Kodur",
+        locPookkottur: "Pookkottur", locAnakkayam: "Anakkayam", locElamkulam: "Elamkulam", locPeruvallur: "Peruvallur",
+        locThenhipalam: "Thenhipalam"
+    },
+    ml: {
+        selectPlace: "സ്ഥലം തിരഞ്ഞെടുക്കുക",
+        nearMe: "📍 എന്റെ അടുത്ത്",
+        findAuto: "ഓട്ടോ തപ്പുക",
+        showingAll: "രജിസ്റ്റർ ചെയ്ത എല്ലാ ഓട്ടോകളും കാണിക്കുന്നു",
+        showingForLoc: "ഈ സ്ഥലത്തെ ഓട്ടോകൾ കാണിക്കുന്നു: ",
+        noDrivers: "ഈ സ്ഥലത്ത് ഓട്ടോകൾ ഒന്നും രജിസ്റ്റർ ചെയ്തിട്ടില്ല.",
+        failedLoad: "ഓട്ടോകൾ ലോഡ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു.",
+        dutyStatus: "ഡ്യൂട്ടി സ്റ്റാറ്റസ്",
+        statusActive: "ആക്ടീവ്",
+        statusInactive: "ഇൻആക്ടീവ്",
+        dutyShift: "ഡ്യൂട്ടി ഷിഫ്റ്റ്‌",
+        shiftAnytime: "എപ്പോൾ വേണമെങ്കിലും",
+        editProfile: "⚙️ പ്രൊഫൈൽ മാറ്റുക",
+        logoutAccount: "ലോഗ് ഔട്ട് ചെയ്യുക",
+        deleteAccount: "അക്കൗണ്ട് ഡിലീറ്റ് ചെയ്യുക",
+        authSignInTitle: "ഓട്ടോക്കാരൻ സൈൻ ഇൻ",
+        authSignUpTitle: "ഓട്ടോക്കാരൻ സൈൻ അപ്പ്",
+        phonePlaceholder: "10 അക്ക ഫോൺ നമ്പർ",
+        passPlaceholder: "പാസ്‌വേഡ് (കുറഞ്ഞത് 6 അക്ഷരങ്ങൾ)",
+        namePlaceholder: "ഡ്രൈവറുടെ പേര്",
+        platePlaceholder: "വണ്ടി നമ്പർ (KL 01 AB 1234)",
+        selectGender: "ലിംഗഭേദം തിരഞ്ഞെടുക്കുക",
+        genderMale: "പുരുഷൻ",
+        genderFemale: "സ്ത്രീ",
+        fuelDiesel: "ഡീസൽ",
+        fuelCNG: "സിഎൻജി",
+        fuelPetrol: "പെട്രോൾ",
+        fuelElectric: "ഇലക്ട്രിക്",
+        selectStand: "ഓട്ടോ സ്റ്റാൻഡ് തിരഞ്ഞെടുക്കുക",
+        standBtn: "📍 സ്റ്റാൻഡ്",
+        chooseVariant: "നിങ്ങളുടെ ഓട്ടോ മോഡൽ തിരഞ്ഞെടുക്കുക:",
+        variantCNG: "സിഎൻജി",
+        variantElectric: "ഇലക്ട്രിക്",
+        variantGoods: "ഗുഡ്സ്",
+        variantKutti: "കുട്ടി ഓട്ടോ",
+        variantApe: "ആപെ ടൈപ്പ്",
+        signInBtn: "സൈൻ ഇൻ",
+        signUpBtn: "അക്കൗണ്ട് ഉണ്ടാക്കുക (സൈൻ അപ്പ്)",
+        toggleSignUp: "പുതിയ ഡ്രൈവർ ആണോ? അക്കൗണ്ട് ഉണ്ടാക്കുക",
+        toggleSignIn: "നിലവിൽ അക്കൗണ്ട് ഉണ്ടോ? സൈൻ ഇൻ ചെയ്യുക",
+        navPassenger: "🛺 പാസഞ്ചർ",
+        navDriver: "👨‍✈️ ഡ്രൈവർ",
+        footerLang: "🌐 മലയാളം (ഇന്ത്യ)",
+        footerDev: "🛠️ ഡെവലപ്പർ: ഹാദി ഷാനവാസ്",
+        footerSupport: "📞 സഹായത്തിന്: 8848218875",
+        footerPrivacy: "സ്വകാര്യതാ നയം",
+        footerTerms: "ഉപയോഗ നിബന്ധനകൾ",
+        modalPrivacyTitle: "സ്വകാര്യതാ നയം (Privacy Policy)",
+        modalPrivacyP1: "നിങ്ങളുടെ സ്വകാര്യത ഞങ്ങൾക്ക് പ്രധാനമാണ്. HeyAuto! പ്രവർത്തിക്കുന്നത് ഗൂഗിളിന്റെ സുരക്ഷിതമായ ഫയർബേസ് ഇൻഫ്രാസ്ട്രക്ചറിലാണ്. നിങ്ങളുടെ വ്യക്തിഗത വിവരങ്ങളും ഫോൺ നമ്പറും ലൊക്കേഷനും പൂർണ്ണമായും എൻക്രിപ്റ്റ് ചെയ്തിട്ടുണ്ടെന്ന് ഞങ്ങൾ ഉറപ്പ് നൽകുന്നു.",
+        modalPrivacyP2: "ഞങ്ങൾ നിങ്ങളുടെ വിവരങ്ങൾ ചോർത്തുകയോ വിക്കുകയോ മറ്റ് ആർക്കെങ്കിലും കൈമാറുകയോ ഇല്ല. ഡ്രൈവർമാരെയും യാത്രക്കാരെയും സുരക്ഷിതമായി ബന്ധിപ്പിക്കുന്നതിന് മാത്രമാണ് ഈ വിവരങ്ങൾ ഉപയോഗിക്കുന്നത്.",
+        modalTermsTitle: "ഉപയോഗ നിബന്ധനകൾ (Terms & Conditions)",
+        modalTermsP1: "HeyAuto! ഉപയോഗിക്കുന്നതിലൂടെ, നിങ്ങൾ മര്യാദയോടും ഉത്തരവാദിത്തത്തോടും കൂടി പെരുമാറാൻ സമ്മതിക്കുന്നു. ഡ്രൈവർമാർ കൃത്യമായ വണ്ടി വിവരങ്ങൾ നൽകുകയും ഡ്യൂട്ടി സ്റ്റാറ്റസ് സത്യസന്ധമായി നിലനിർത്തുകയും വേണം.",
+        modalTermsP2: "യാത്രക്കാർ അവരുടെ സ്റ്റാൻഡിലുള്ള കൃത്യമായ ഡ്രൈവർമാരെ ബന്ധപ്പെടുന്നു എന്ന് ഉറപ്പാക്കണം. HeyAuto! ഒരു കണക്റ്റിംഗ് പ്ലാറ്റ്‌ഫോം മാത്രമാണ്, അതിനു ശേഷമുള്ള ഇടപാടുകൾക്ക് ആപ്പ് ഉത്തരവാദിയല്ല.",
+        modalEditTitle: "പ്രൊഫൈൽ തിരുത്തുക",
+        editLabelPhone: "ഫോൺ നമ്പർ",
+        editLabelFuel: "ഇന്ധന തരം",
+        saveChangesBtn: "മാറ്റങ്ങൾ സേവ് ചെയ്യുക",
+        reqField: "ഈ ഫീൽഡ് നിർബന്ധമാണ്",
+        tenDigits: "കൃത്യം 10 അക്കങ്ങൾ നൽകുക",
+        passMin: "പാസ്‌വേഡിന് കുറഞ്ഞത് 6 അക്ഷരങ്ങൾ വേണം",
+        validPlate: "KL 01 AB 1234 എന്ന രീതിയിൽ കൃത്യമായി നൽകുക",
+        genderMandatory: "രജിസ്റ്റർ ചെയ്യാൻ ലിംഗഭേദം തിരഞ്ഞെടുക്കൽ നിർബന്ധമാണ്.",
+        fuelMandatory: "രജിസ്റ്റർ ചെയ്യാൻ ഇന്ധന തരം തിരഞ്ഞെടുക്കൽ നിർബന്ധമാണ്.",
+        standMandatory: "നിങ്ങളുടെ ഓട്ടോ സ്റ്റാൻഡ് തിരഞ്ഞെടുക്കുകയോ ജിപിഎസ് വഴി കണ്ടെത്തുകയോ ചെയ്യുക.",
+        regSuccess: "ഡ്രൈവർ അക്കൗണ്ട് വിജയകരമായി നിർമ്മിക്കപ്പെട്ടു!",
+        regFailedNum: "രജിസ്ട്രേഷൻ പരാജയപ്പെട്ടു: ഈ ഫോൺ നമ്പർ നിലവിലുണ്ട്.",
+        regFailed: "രജിസ്ട്രേഷൻ പരാജയപ്പെട്ടു: ",
+        loginSuccess: "വിജയകരമായി ലോഗിൻ ചെയ്തു!",
+        loginFailed: "ലോഗിൻ പരാജയപ്പെട്ടു: ഫോൺ നമ്പറോ പാസ്‌വേഡോ പരിശോധിക്കുക.",
+        logoutSuccess: "വിജയകരമായി ലോഗ് ഔട്ട് ചെയ്തു!",
+        confirmDelete: "നിങ്ങളുടെ ഡ്രൈവർ അക്കൗണ്ട് എന്നെന്നേക്കുമായി ഇല്ലാതാക്കണമെന്ന് ഉറപ്പാണോ? ഈ നടപടി മാറ്റാൻ കഴിയില്ല.",
+        promptPassDelete: "അക്കൗണ്ട് ഡിലീറ്റ് ചെയ്യുന്നത് സ്ഥിരീകരിക്കാൻ പാസ്‌വേഡ് നൽകുക:",
+        emptyPass: "പാസ്‌വേഡ് വെറുതെ വിടാൻ കഴിയില്ല.",
+        sessionLost: "സെഷൻ നഷ്ടപ്പെട്ടു. ദയവായി വീണ്ടും ലോഗിൻ ചെയ്ത ശേഷം ഡിലീറ്റ് ചെയ്യുക.",
+        deleteSuccess: "നിങ്ങളുടെ ഡ്രൈവർ പ്രൊഫൈൽ പൂർണ്ണമായും ഡിലീറ്റ് ചെയ്യപ്പെട്ടു.",
+        deleteFailed: "ഡിലീറ്റ് ചെയ്യാൻ കഴിഞ്ഞില്ല: പാസ്‌വേഡ് തെറ്റാണ് അല്ലെങ്കിൽ നെറ്റ്‌വർക്ക് തകരാറാണ്.",
+        promptPassUpdate: "ഫോൺ നമ്പർ മാറ്റുന്നത് നിങ്ങളുടെ ലോഗിൻ ഐഡിയെ ബാധിക്കും. മാറ്റങ്ങൾ വരുത്താൻ അക്കൗണ്ട് പാസ്‌വേഡ് നൽകുക:",
+        blankPass: "പാസ്‌വേഡ് നൽകേണ്ടതുണ്ട്.",
+        updateSuccess: "പ്രൊഫൈൽ വിവരങ്ങൾ വിജയകരമായി അപ്ഡേറ്റ് ചെയ്തു!",
+        updateFailedNum: "അപ്ഡേറ്റ് പരാജയപ്പെട്ടു: ഈ ഫോൺ നമ്പർ മറ്റൊരാൾ ഉപയോഗിക്കുന്നുണ്ട്.",
+        updateFailed: "അപ്ഡേറ്റ് പരാജയപ്പെട്ടു: ",
+        welcome: "സ്വാഗതം, ",
+        cardGender: "🧬 ലിംഗഭേദം: ",
+        cardFuel: "⛽ ഇന്ധനം: ",
+        cardShift: "🕒 ഷിഫ്റ്റ്‌: ",
+        cardPlate: "🚕 നമ്പർ പ്ലേറ്റ്: ",
+        cardHub: "📍 സ്റ്റാൻഡ്: ",
+        cardCall: "📞 വിളിക്കുക",
+        gpsErrSupport: "നിങ്ങളുടെ ബ്രൗസറിൽ ജിപിഎസ് സംവിധാനം ലഭ്യമല്ല.",
+        gpsErrFetch: "നിങ്ങളുടെ ലൊക്കേഷൻ കണ്ടെത്താൻ കഴിഞ്ഞില്ല. ദയവായി സ്വയം തിരഞ്ഞെടുക്കുക.",
+        gpsErrStand: "നിങ്ങളുടെ ഓട്ടോ സ്റ്റാൻഡ് ലൊക്കേഷൻ കണ്ടെത്താൻ കഴിഞ്ഞില്ല. സ്വയം തിരഞ്ഞെടുക്കുക.",
+        
+        // Place Names translation map (Malayalam Phonetics)
+        locKondotty: "കൊണ്ടോട്ടി", locManjeri: "മഞ്ചേരി", locMalappuram: "മലപ്പുറം", locPerinthalmanna: "പെരിന്തൽമണ്ണ",
+        locTirur: "തിരൂർ", locKottakkal: "കോട്ടക്കൽ", locNilambur: "നിലമ്പൂർ", locPonnani: "പൊന്നാനി",
+        locValanchery: "വളാഞ്ചേരി", locParappanangadi: "പരപ്പനങ്ങാടി", locTanur: "താനൂർ", locTirurangadi: "തിരൂരങ്ങാടി",
+        locKizhissery: "കിഴിശ്ശേരി", locPulikkal: "പുളിക്കൽ", locMongam: "മോങ്ങം", locVazhakkad: "വാഴക്കാട്",
+        locVazhayoor: "വാഴയൂർ", locCheekode: "ചീക്കോട്", locCherukavu: "ചെറുകാവ്", locNediyiruppu: "നെടിയിരുപ്പ്",
+        locMorayur: "മൊറയൂർ", locKuzhimanna: "കുഴിമണ്ണ", locKavanur: "കാവന്നൂർ", locAreekode: "അരീക്കോട്",
+        locEdavanna: "എടവണ്ണ", locPandikkad: "പണ്ടിക്കാട്", locWandoor: "വണ്ടൂർ", locKaruvarakundu: "കരുവാരകുണ്ട്",
+        locVengara: "വേങ്ങര", locChemmad: "ചെമ്മാട്", locKalikavu: "കാളികാവ്", locMampad: "മമ്പാട്",
+        locMelattur: "മേലാറ്റൂർ", locAngadipuram: "അങ്ങാടിപ്പുറം", locThirunavaya: "തിരുനാവായ", locKuttippuram: "കുറ്റിപ്പുറം",
+        locValavannur: "വളവന്നൂർ", locOthukkungal: "ഒതുക്കുങ്ങൽ", locParappur: "പരപ്പൂർ", locKodur: "കോഡൂർ",
+        locPookkottur: "പൂക്കോട്ടൂർ", locAnakkayam: "ആനക്കയം", locElamkulam: "എലംകുളം", locPeruvallur: "പെരുവള്ളൂർ",
+        locThenhipalam: "തേഞ്ഞിപ്പലം"
+    }
+};
+
+let currentLang = "en";
+
+function applyLanguage(lang) {
+    currentLang = lang;
+    const strings = langData[lang];
+    
+    // 1. Scan static elements with data-key attribute
+    document.querySelectorAll("[data-key]").forEach(elem => {
+        const key = elem.getAttribute("data-key");
+        if (strings[key]) {
+            elem.textContent = strings[key];
+        }
+    });
+
+    // 2. Update dynamic text input fields placeholders
+    document.getElementById("phone").placeholder = strings.phonePlaceholder;
+    document.getElementById("password").placeholder = strings.passPlaceholder;
+    document.getElementById("name").placeholder = strings.namePlaceholder;
+    document.getElementById("plate").placeholder = strings.platePlaceholder;
+    document.getElementById("editPhone").placeholder = strings.phonePlaceholder;
+
+    // 3. Update active authentication state title headers
+    if (isSignUpMode) {
+        authTitle.textContent = strings.authSignUpTitle;
+        authSubmitBtn.textContent = strings.signUpBtn;
+        authToggleLink.textContent = strings.toggleSignIn;
+    } else {
+        authTitle.textContent = strings.authSignInTitle;
+        authSubmitBtn.textContent = strings.signInBtn;
+        authToggleLink.textContent = strings.toggleSignUp;
+    }
+
+    // 4. Update secondary UI string text elements
+    document.getElementById("footerLangText").textContent = strings.footerLang;
+    
+    const selectedLocation = locationSelect.value;
+    if (selectedLocation) {
+        result.textContent = `${strings.showingForLoc}${getLocalizedPlaceName(selectedLocation)}`;
+    } else {
+        result.textContent = strings.showingAll;
+    }
+}
+
+function getLocalizedPlaceName(placeValue) {
+    if (!placeValue) return "";
+    const strings = langData[currentLang];
+    const lookupKey = "loc" + placeValue;
+    return strings[lookupKey] ? strings[lookupKey] : placeValue;
+}
+
+document.getElementById("langSelector").addEventListener("change", (e) => {
+    applyLanguage(e.target.value);
+    // Reload open screens to display language cleanly
+    if (locationSelect.value) {
+        loadAllDrivers();
+    }
+    if (currentUID) {
+        fetchAndPopulateProfile(currentUID);
+    }
+});
+
 let isSignUpMode = false;
 let currentUID = null;
 let currentStatus = "Active"; 
@@ -315,6 +714,7 @@ const result = document.getElementById("result");
 const findBtn = document.getElementById("findBtn");
 const resulted = document.getElementById("resulted");
 const gpsBtn = document.getElementById("gpsBtn");
+const driverGpsBtn = document.getElementById("driverGpsBtn");
 
 const driverAuthView = document.getElementById("driverAuthView");
 const driverProfileView = document.getElementById("driverProfileView");
@@ -359,17 +759,60 @@ const saveProfileBtn = document.getElementById("saveProfileBtn");
 
 // Coordinates Mapping Dataset for Calculations
 const hubCoordinates = [
-    { name: "Kizhisseri", lat: 11.1833, lng: 76.0167 },
+    // Municipalities
     { name: "Kondotty", lat: 11.1495, lng: 75.9620 },
+    { name: "Manjeri", lat: 11.1215, lng: 76.1210 },
+    { name: "Malappuram", lat: 11.0720, lng: 76.0740 },
+    { name: "Perinthalmanna", lat: 10.9754, lng: 76.2248 },
+    { name: "Tirur", lat: 10.9022, lng: 75.9244 },
+    { name: "Kottakkal", lat: 10.9996, lng: 76.0022 },
+    { name: "Nilambur", lat: 11.2754, lng: 76.2281 },
+    { name: "Ponnani", lat: 10.7745, lng: 75.9254 },
+    { name: "Valanchery", lat: 10.9332, lng: 76.0504 },
+    { name: "Parappanangadi", lat: 11.0454, lng: 75.8615 },
+    { name: "Tanur", lat: 10.9753, lng: 75.8754 },
+    { name: "Tirurangadi", lat: 11.0425, lng: 75.9281 },
+
+    // Kondotty Area
+    { name: "Kizhissery", lat: 11.1833, lng: 76.0167 },
+    { name: "Pulikkal", lat: 11.1632, lng: 75.9272 },
     { name: "Mongam", lat: 11.1345, lng: 75.9612 },
+    { name: "Vazhakkad", lat: 11.2332, lng: 75.9547 },
+    { name: "Vazhayoor", lat: 11.2361, lng: 75.9031 },
+    { name: "Cheekode", lat: 11.2335, lng: 75.9864 },
+    { name: "Cherukavu", lat: 11.1837, lng: 75.9181 },
+    { name: "Nediyiruppu", lat: 11.0825, lng: 75.9452 },
+    { name: "Morayur", lat: 11.1118, lng: 75.9754 },
+    { name: "Kuzhimanna", lat: 11.1558, lng: 75.9961 },
+    { name: "Kavanur", lat: 11.2064, lng: 76.0592 },
     { name: "Areekode", lat: 11.2372, lng: 76.0506 },
-    { name: "Ramanatukara", lat: 11.1910, lng: 75.8679 },
-    { name: "Coimbatore", lat: 11.0168, lng: 76.9558 }
+    { name: "Edavanna", lat: 11.2589, lng: 76.1154 },
+
+    // Additional Popular Places
+    { name: "Pandikkad", lat: 11.1147, lng: 76.2307 },
+    { name: "Wandoor", lat: 11.1944, lng: 76.2343 },
+    { name: "Karuvarakundu", lat: 11.1172, lng: 76.3315 },
+    { name: "Vengara", lat: 11.0503, lng: 75.9144 },
+    { name: "Chemmad", lat: 11.0416, lng: 75.8659 },
+    { name: "Kalikavu", lat: 11.1661, lng: 76.3197 },
+    { name: "Mampad", lat: 11.2464, lng: 76.1683 },
+    { name: "Melattur", lat: 11.0631, lng: 76.2692 },
+    { name: "Angadipuram", lat: 10.9818, lng: 76.2132 },
+    { name: "Thirunavaya", lat: 10.8524, lng: 75.8943 },
+    { name: "Kuttippuram", lat: 10.8407, lng: 76.0426 },
+    { name: "Valavannur", lat: 10.9167, lng: 75.9167 },
+    { name: "Othukkungal", lat: 11.0264, lng: 75.9681 },
+    { name: "Parappur", lat: 11.0094, lng: 75.9328 },
+    { name: "Kodur", lat: 11.0272, lng: 76.0315 },
+    { name: "Pookkottur", lat: 11.1039, lng: 75.9989 },
+    { name: "Anakkayam", lat: 11.0776, lng: 76.1039 },
+    { name: "Elamkulam", lat: 10.9575, lng: 76.2559 },
+    { name: "Peruvallur", lat: 11.0967, lng: 75.9081 },
+    { name: "Thenhipalam", lat: 11.1331, lng: 75.8893 }
 ];
 
-// Haversine Distance Formula Algorithm Implementation
 function calculateHaversineDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Radius of the earth in km
+    const R = 6371; 
     const dLat = (lat2 - lat1) * Math.PI / 180;
     const dLon = (lon2 - lon1) * Math.PI / 180;
     const a = 
@@ -377,13 +820,26 @@ function calculateHaversineDistance(lat1, lon1, lat2, lon2) {
         Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
     ; 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
-    return R * c; // Distance in km
+    return R * c; 
 }
 
-// Geolocation Handling logic integration
+function findClosestHub(lat, lng) {
+    let closestHub = null;
+    let minimumDistance = Infinity;
+
+    hubCoordinates.forEach(hub => {
+        const distance = calculateHaversineDistance(lat, lng, hub.lat, hub.lng);
+        if (distance < minimumDistance) {
+            minimumDistance = distance;
+            closestHub = hub.name;
+        }
+    });
+    return closestHub;
+}
+
 gpsBtn.addEventListener("click", () => {
     if (!navigator.geolocation) {
-        alert("Geolocation is not supported by your web browser setup.");
+        alert(langData[currentLang].gpsErrSupport);
         return;
     }
 
@@ -392,39 +848,52 @@ gpsBtn.addEventListener("click", () => {
 
     navigator.geolocation.getCurrentPosition(
         (position) => {
-            const passengerLat = position.coords.latitude;
-            const passengerLng = position.coords.longitude;
-
-            let closestHub = null;
-            let minimumDistance = Infinity;
-
-            hubCoordinates.forEach(hub => {
-                const distance = calculateHaversineDistance(passengerLat, passengerLng, hub.lat, hub.lng);
-                if (distance < minimumDistance) {
-                    minimumDistance = distance;
-                    closestHub = hub.name;
-                }
-            });
-
+            const closestHub = findClosestHub(position.coords.latitude, position.coords.longitude);
             if (closestHub) {
                 locationSelect.value = closestHub;
-                loadAllDrivers(); // Instantly look up matching cars automatically
+                loadAllDrivers(); 
             }
-            
-            gpsBtn.textContent = "📍 Near Me";
+            gpsBtn.textContent = langData[currentLang].nearMe;
             gpsBtn.disabled = false;
         },
         (error) => {
             console.error("GPS Error: ", error);
-            alert("Unable to grab current location context configuration. Choose manually.");
-            gpsBtn.textContent = "📍 Near Me";
+            alert(langData[currentLang].gpsErrFetch);
+            gpsBtn.textContent = langData[currentLang].nearMe;
             gpsBtn.disabled = false;
         },
         { enableHighAccuracy: true, timeout: 6000 }
     );
 });
 
-// Creation selector options logic
+driverGpsBtn.addEventListener("click", () => {
+    if (!navigator.geolocation) {
+        alert(langData[currentLang].gpsErrSupport);
+        return;
+    }
+
+    driverGpsBtn.textContent = "⏳...";
+    driverGpsBtn.disabled = true;
+
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const closestHub = findClosestHub(position.coords.latitude, position.coords.longitude);
+            if (closestHub) {
+                placeSelect.value = closestHub;
+            }
+            driverGpsBtn.textContent = langData[currentLang].standBtn;
+            driverGpsBtn.disabled = false;
+        },
+        (error) => {
+            console.error("Stand GPS Error: ", error);
+            alert(langData[currentLang].gpsErrStand);
+            driverGpsBtn.textContent = langData[currentLang].standBtn;
+            driverGpsBtn.disabled = false;
+        },
+        { enableHighAccuracy: true, timeout: 6000 }
+    );
+});
+
 const autoOptions = document.querySelectorAll("#autoSelectorContainer .auto-option");
 autoOptions.forEach(opt => {
     opt.addEventListener("click", () => {
@@ -434,7 +903,6 @@ autoOptions.forEach(opt => {
     });
 });
 
-// Edit selector options logic
 const editAutoOptions = document.querySelectorAll("#editAutoSelectorContainer .auto-option");
 editAutoOptions.forEach(opt => {
     opt.addEventListener("click", () => {
@@ -471,25 +939,20 @@ async function setDriverStatusInFirebase(status) {
 
 function isTimeInShift(shift) {
     if (shift === "Anytime") return true;
-
     const now = new Date();
     const currentHour = now.getHours(); 
-
     if (shift === "6 AM - 4 PM") {
         return currentHour >= 6 && currentHour < 16;
     } else if (shift === "8 PM - 4 AM") {
         return currentHour >= 20 || currentHour < 4;
     }
-    
     return true; 
 }
 
 async function enforceDutyStatus(shift) {
     if (!currentUID) return;
-    
     const shouldBeActive = isTimeInShift(shift);
     const targetStatus = shouldBeActive ? "Active" : "Inactive";
-
     if (currentStatus !== targetStatus) {
         updateStatusUI(targetStatus);
         await setDriverStatusInFirebase(targetStatus);
@@ -516,7 +979,7 @@ dutyTimeSelect.addEventListener("change", async (e) => {
     try {
         const docRef = doc(db, "Drivers", currentUID);
         await updateDoc(docRef, { shift: newShift });
-        profShift.textContent = `🕒 Shift: ${newShift}`;
+        profShift.textContent = `${langData[currentLang].cardShift}${newShift}`;
         enforceDutyStatus(newShift);
     } catch (error) {
         console.error("Error updating shift field", error);
@@ -538,19 +1001,21 @@ async function fetchAndPopulateProfile(userUID) {
         if (docSnap.exists()) {
             const data = docSnap.data();
             currentDriverPhone = data.phone; 
-            document.getElementById("welcomeDriver").textContent = `Welcome, ${data.name}!`;
+            
+            const strings = langData[currentLang];
+            document.getElementById("welcomeDriver").textContent = `${strings.welcome}${data.name}!`;
             document.getElementById("profName").textContent = `👤 ${data.name}`;
-            document.getElementById("profGender").textContent = `🧬 Gender: ${data.gender || '--'}`;
+            document.getElementById("profGender").textContent = `${strings.cardGender}${data.gender === "Male" ? strings.genderMale : (data.gender === "Female" ? strings.genderFemale : data.gender || '--')}`;
             document.getElementById("profPhone").textContent = `📞 ${data.phone}`;
-            document.getElementById("profPlace").textContent = `📍 ${data.place}`;
-            document.getElementById("profFuel").textContent = `⛽ Fuel: ${data.fuel || '--'}`;
-            document.getElementById("profPlate").textContent = `🚕 Plate: ${data.plate}`;
+            document.getElementById("profPlace").textContent = `${strings.cardHub}${getLocalizedPlaceName(data.place)}`;
+            document.getElementById("profFuel").textContent = `${strings.cardFuel}${data.fuel || '--'}`;
+            document.getElementById("profPlate").textContent = `${strings.cardPlate}${data.plate}`;
             
             profAutoImg.src = data.autoImage || "cng.png";
             
             const dbShift = data.shift || "Anytime";
             dutyTimeSelect.value = dbShift;
-            profShift.textContent = `🕒 Shift: ${dbShift}`;
+            profShift.textContent = `${strings.cardShift}${dbShift === "Anytime" ? strings.shiftAnytime : dbShift}`;
             
             profileCardRoot.className = "driver-card " + getFuelClass(data.fuel);
 
@@ -581,15 +1046,16 @@ authToggleLink.addEventListener("click", () => {
     isSignUpMode = !isSignUpMode;
     phoneError.textContent = ""; passError.textContent = ""; nameError.textContent = ""; plateError.textContent = ""; genderError.textContent = ""; fuelError.textContent = "";
     
+    const strings = langData[currentLang];
     if (isSignUpMode) {
-        authTitle.textContent = "ഓട്ടോക്കാരൻ Sign Up";
-        authSubmitBtn.textContent = "Create Account & Sign Up";
-        authToggleLink.textContent = "Already have an account? Sign In";
+        authTitle.textContent = strings.authSignUpTitle;
+        authSubmitBtn.textContent = strings.signUpBtn;
+        authToggleLink.textContent = strings.toggleSignIn;
         signUpFields.classList.remove("hidden-field");
     } else {
-        authTitle.textContent = "ഓട്ടോക്കാരൻ Sign In";
-        authSubmitBtn.textContent = "Sign In";
-        authToggleLink.textContent = "New driver? Create an account (Sign Up)";
+        authTitle.textContent = strings.authSignInTitle;
+        authSubmitBtn.textContent = strings.signInBtn;
+        authToggleLink.textContent = strings.toggleSignUp;
         signUpFields.classList.add("hidden-field");
     }
 });
@@ -600,23 +1066,24 @@ authSubmitBtn.addEventListener("click", async () => {
 
     const phoneValue = phoneInput.value.trim();
     const passValue = passInput.value;
+    const strings = langData[currentLang];
 
     if(phoneValue === "") {
-        phoneError.textContent = "This field is required";
+        phoneError.textContent = strings.reqField;
         valid = false;
     } else if(!/^\d{10}$/.test(phoneValue)) {
-        phoneError.textContent = "Enter exactly 10 digits";
+        phoneError.textContent = strings.tenDigits;
         valid = false;
     }
 
     if(passValue.length < 6) {
-        passError.textContent = "Password must be at least 6 characters";
+        passError.textContent = strings.passMin;
         valid = false;
     }
 
     if (isSignUpMode) {
         if(nameInput.value.trim() === ""){
-            nameError.textContent = "This field is required";
+            nameError.textContent = strings.reqField;
             valid = false;
         }
 
@@ -624,20 +1091,25 @@ authSubmitBtn.addEventListener("click", async () => {
         const platePattern = /^[A-Z]{2}\s?\d{2}\s?[A-Z]{1,2}\s?\d{1,4}$/;
 
         if(plateValue === ""){
-            plateError.textContent = "This field is required";
+            plateError.textContent = strings.reqField;
             valid = false;
         } else if(!platePattern.test(plateValue.toUpperCase())){
-            plateError.textContent = "Enter valid format like KL 01 AB 1234";
+            plateError.textContent = strings.validPlate;
             valid = false;
         }
 
         if(!genderSelect.value || genderSelect.value === "") {
-            genderError.textContent = "Gender selection is mandatory to register.";
+            genderError.textContent = strings.genderMandatory;
             valid = false;
         }
 
         if(!fuelSelect.value || fuelSelect.value === "") {
-            fuelError.textContent = "Fuel type selection is mandatory to register.";
+            fuelError.textContent = strings.fuelMandatory;
+            valid = false;
+        }
+        
+        if(!placeSelect.value || placeSelect.value === "") {
+            alert(strings.standMandatory);
             valid = false;
         }
     }
@@ -663,26 +1135,26 @@ authSubmitBtn.addEventListener("click", async () => {
                 autoImage: selectedAutoImage
             });
 
-            alert("Driver account created and uploaded successfully!");
+            alert(strings.regSuccess);
             nameInput.value = ""; plateInput.value = ""; phoneInput.value = ""; passInput.value = "";
-            genderSelect.value = ""; fuelSelect.value = "";
+            genderSelect.value = ""; fuelSelect.value = ""; placeSelect.value = "";
         } catch(error) {
             console.error(error);
             if (error.code === "auth/email-already-in-use" || error.code === "auth/credential-already-in-use") {
-                phoneError.textContent = "This number already exists!";
-                alert("Registration failed: This phone number is already registered.");
+                phoneError.textContent = strings.regFailedNum;
+                alert(strings.regFailedNum);
             } else {
-                alert("Registration failed: " + error.message);
+                alert(strings.regFailed + error.message);
             }
         }
     } else {
         try {
             await signInWithEmailAndPassword(auth, fakeEmail, passValue);
-            alert("Logged in successfully!");
+            alert(strings.loginSuccess);
             phoneInput.value = ""; passInput.value = "";
         } catch(error) {
             console.error(error);
-            alert("Authentication failed: Check phone number or password.");
+            alert(strings.loginFailed);
         }
     }
 });
@@ -690,26 +1162,27 @@ authSubmitBtn.addEventListener("click", async () => {
 logoutBtn.addEventListener("click", async () => {
     try {
         await signOut(auth);
-        alert("Logged out successfully!");
+        alert(langData[currentLang].logoutSuccess);
     } catch(e) {
         console.error(e);
     }
 });
 
 deleteBtn.addEventListener("click", async () => {
-    const confirmFirst = confirm("Are you sure you want to permanently delete your driver account? This action cannot be undone.");
+    const strings = langData[currentLang];
+    const confirmFirst = confirm(strings.confirmDelete);
     if (!confirmFirst) return;
 
-    const typedPassword = prompt("Please enter your password to confirm deletion:");
+    const typedPassword = prompt(strings.promptPassDelete);
     if (typedPassword === null) return; 
     if (typedPassword.trim() === "") {
-        alert("Password cannot be empty.");
+        alert(strings.emptyPass);
         return;
     }
 
     const user = auth.currentUser;
     if (!user || !currentDriverPhone) {
-        alert("Session lost. Please log in again to delete your account.");
+        alert(strings.sessionLost);
         return;
     }
 
@@ -723,14 +1196,13 @@ deleteBtn.addEventListener("click", async () => {
         await deleteDoc(docRef);
         await deleteUser(user);
 
-        alert("Your driver profile has been completely deleted.");
+        alert(strings.deleteSuccess);
     } catch (error) {
         console.error(error);
-        alert("Deletion failed: Password incorrect or network error.");
+        alert(strings.deleteFailed);
     }
 });
 
-// ================= EDIT PROFILE CONTROL LOGIC =================
 openEditProfile.addEventListener("click", async () => {
     if (!auth.currentUser || !currentDriverPhone) return;
     
@@ -764,15 +1236,16 @@ closeEditProfile.addEventListener("click", () => {
 });
 
 saveProfileBtn.addEventListener("click", async () => {
+    const strings = langData[currentLang];
     const newPhone = editPhoneInput.value.trim();
     const newFuel = editFuelSelect.value;
     editPhoneError.textContent = "";
     
     if (newPhone === "") {
-        editPhoneError.textContent = "This field is required";
+        editPhoneError.textContent = strings.reqField;
         return;
     } else if (!/^\d{10}$/.test(newPhone)) {
-        editPhoneError.textContent = "Enter exactly 10 digits";
+        editPhoneError.textContent = strings.tenDigits;
         return;
     }
     
@@ -780,12 +1253,11 @@ saveProfileBtn.addEventListener("click", async () => {
     if (!user) return;
     
     try {
-        // Handle changes cleanly if driver modifications alter login credentials structure
         if (newPhone !== currentDriverPhone) {
-            const typedPassword = prompt("Changing phone numbers alters your login ID. Please enter your account password to authorize modifications:");
+            const typedPassword = prompt(strings.promptPassUpdate);
             if (typedPassword === null) return;
             if (typedPassword.trim() === "") {
-                alert("Password cannot be blank.");
+                alert(strings.blankPass);
                 return;
             }
             
@@ -804,24 +1276,26 @@ saveProfileBtn.addEventListener("click", async () => {
             autoImage: editSelectedAutoImage
         });
         
-        alert("Profile details updated successfully!");
+        alert(strings.updateSuccess);
         editProfileModal.style.display = "none";
         await fetchAndPopulateProfile(user.uid);
         
     } catch (err) {
         console.error(err);
         if (err.code === "auth/email-already-in-use") {
-            alert("Update Failed: That phone number is already registered under another account profile.");
+            alert(strings.updateFailedNum);
         } else {
-            alert("Update Profile Failed: " + err.message);
+            alert(strings.updateFailed + err.message);
         }
     }
 });
 
 async function loadAllDrivers() {
     const selectedLocation = locationSelect.value;
+    const strings = langData[currentLang];
     if (!selectedLocation) return;
-    result.textContent = `Showing autos for location: ${selectedLocation}`;
+    
+    result.textContent = `${strings.showingForLoc}${getLocalizedPlaceName(selectedLocation)}`;
     resulted.innerHTML = "";
 
     try {
@@ -830,7 +1304,6 @@ async function loadAllDrivers() {
 
         snapshot.forEach(doc => {
             const driver = doc.data();
-
             if (
                 driver.place &&
                 driver.place.toLowerCase() === selectedLocation.toLowerCase()
@@ -839,18 +1312,14 @@ async function loadAllDrivers() {
             }
         });
         if(drivers.length === 0){
-            resulted.innerHTML = `<p class="not-found">No drivers registered on the system yet.</p>`;
+            resulted.innerHTML = `<p class="not-found">${strings.noDrivers}</p>`;
             return;
         }
 
         drivers.sort((a, b) => {
             const matchA = a.place === selectedLocation ? 1 : 0;
             const matchB = b.place === selectedLocation ? 1 : 0;
-            
-            if (matchA !== matchB) {
-                return matchB - matchA; 
-            }
-            
+            if (matchA !== matchB) return matchB - matchA; 
             const statusA = a.status || "Active";
             const statusB = b.status || "Active";
             if (statusA === "Active" && statusB !== "Active") return -1;
@@ -863,7 +1332,7 @@ async function loadAllDrivers() {
             const isDriverActive = currentDriverStatus === "Active";
 
             const badgeClass = isDriverActive ? "badge-active" : "badge-inactive";
-            const badgeText = isDriverActive ? "Active" : "Inactive";
+            const badgeText = isDriverActive ? strings.statusActive : strings.statusInactive;
             
             const driverGender = driver.gender || "Not specified";
             const driverFuel = driver.fuel || "Not specified";
@@ -875,32 +1344,35 @@ async function loadAllDrivers() {
             card.className = `driver-card ${fuelThemeClass}`;
             card.innerHTML = `
                 <div class="driver-banner"></div>
-                <img src="${driverAutoImg}" class="card-auto-img" alt="Auto Variant Selection Preview">
+                <img src="${driverAutoImg}" class="card-auto-img" alt="Auto Variant Layout">
                 <span class="badge ${badgeClass}">${badgeText}</span>
                 <h3>👤 ${driver.name}</h3>
                 
                 <p class="call-btn-container">
                     <a href="tel:${driver.phone}" class="animated-call-btn">
-                        <span>📞 Call Driver</span>
+                        <span>${strings.cardCall}</span>
                     </a>
                 </p>
-                <p>🧬 <strong>Gender:</strong> ${driverGender}</p>
-                <p>📍 <strong>Hub:</strong> ${driver.place}</p>
-                <p>⛽ <strong>Fuel Type:</strong> <span class="fuel-txt">${driverFuel}</span></p>
-                <p>🕒 <strong>Shift:</strong> ${driverShift}</p>
-                <p>Taxi <strong>Number Plate:</strong> ${driver.plate}</p>
+                <p>🧬 <strong>${strings.cardGender.replace(':','')}</strong> ${driverGender === "Male" ? strings.genderMale : (driverGender === "Female" ? strings.genderFemale : driverGender)}</p>
+                <p>📍 <strong>${strings.cardHub.replace(':','')}</strong> ${getLocalizedPlaceName(driver.place)}</p>
+                <p>⛽ <strong>${strings.cardFuel.replace(':','')}</strong> <span class="fuel-txt">${driverFuel}</span></p>
+                <p>🕒 <strong>${strings.cardShift.replace(':','')}</strong> ${driverShift === "Anytime" ? strings.shiftAnytime : driverShift}</p>
+                <p>${strings.cardPlate} ${driver.plate}</p>
             `;
             resulted.appendChild(card);
         });
 
     } catch(error) {
         console.error(error);
-        resulted.innerHTML = `<p class="not-found">Failed to load drivers.</p>`;
+        resulted.innerHTML = `<p class="not-found">${strings.failedLoad}</p>`;
     }
 }
 
 findBtn.addEventListener("click", loadAllDrivers);
-window.addEventListener("DOMContentLoaded", loadAllDrivers);
+window.addEventListener("DOMContentLoaded", () => {
+    applyLanguage("en"); // Sets initial app state default view layout setup
+    loadAllDrivers();
+});
 
 const customerPage = document.getElementById("customerPage");
 const driverPage = document.getElementById("driverPage");
@@ -934,7 +1406,7 @@ customerBtn.addEventListener("click", () => {
     driverBtn.classList.remove("active-tab");
 });
 
-// ================= LEGAL MODAL LOGIC =================
+// Legal Modals UI Logic
 const privacyModal = document.getElementById("privacyModal");
 const termsModal = document.getElementById("termsModal");
 
