@@ -94,7 +94,7 @@
             <option value="Tanur" data-key="locTanur">Tanur</option>
             <option value="Tirurangadi" data-key="locTirurangadi">Tirurangadi</option>
                         <option value="Ramanatukara" data-key="locRamanatukara">Ramanatukara</option>
-            <option value="Kizhisseri" data-key="locKizhissery">Kizhisseri</option>
+            <option value="Kizhissery" data-key="locKizhissery">Kizhisseri</option>
             <option value="Pulikkal" data-key="locPulikkal">Pulikkal</option>
             <option value="Mongam" data-key="locMongam">Mongam</option>
             <option value="Vazhakkad" data-key="locVazhakkad">Vazhakkad</option>
@@ -212,6 +212,7 @@
             <div class="error" id="fuelError"></div>
 
             <div class="location-container">
+                <button id="driverGpsBtn" type="button" class="gps-btn" title="Detect current stand location" data-key="standBtn">📍 Stand</button>
                 <select id="place">
                  <option value="">Select a Place</option>
 
@@ -264,32 +265,32 @@
 <option value="Elamkulam">Elamkulam</option>
 <option value="Peruvallur">Peruvallur</option>
 <option value="Thenhipalam">Thenhipalam</option> </select>
-                <button id="driverGpsBtn" type="button" class="gps-btn" title="Detect current stand location" data-key="standBtn">📍 Stand</button>
+                
             </div>
             
-            <span class="auto-selector-label" data-key="chooseVariant">Choose Your Auto Variant:</span>
-            <div class="auto-selector" id="autoSelectorContainer">
-                <div class="auto-option selected" data-value="cng.png">
-                    <img src="cng.png" alt="CNG Variant">
-                    <p data-key="variantCNG">CNG</p>
-                </div>
-                <div class="auto-option" data-value="karand.png">
-                    <img src="karand.png" alt="Electric Variant">
-                    <p data-key="variantElectric">Electric</p>
-                </div>
-                <div class="auto-option" data-value="kotta.png">
-                    <img src="kotta.png" alt="Goods Variant">
-                    <p data-key="variantGoods">Goods</p>
-                </div>
-                <div class="auto-option" data-value="kutti.png">
-                    <img src="kutti.png" alt="Kutti Variant">
-                    <p data-key="variantKutti">kutti</p>
-                </div>
-                <div class="auto-option" data-value="Valuth.png">
-                    <img src="Valuth.png" alt="Ape Variant">
-                    <p data-key="variantApe">Ape type</p>
-                </div>
-            </div>
+          <span class="auto-selector-label" data-key="chooseVariant">Choose Your Auto Variant:</span>
+<div class="auto-selector" id="autoSelectorContainer">
+    <div class="auto-option" data-value="kutti.png">
+        <img src="kutti.png" alt="Kutti Variant">
+        <p data-key="variantKutti">kutti</p>
+    </div>
+    <div class="auto-option" data-value="Valuth.png">
+        <img src="Valuth.png" alt="Ape Variant">
+        <p data-key="variantApe">Ape type</p>
+    </div>
+    <div class="auto-option" data-value="karand.png">
+        <img src="karand.png" alt="Electric Variant">
+        <p data-key="variantElectric">Electric</p>
+    </div>
+    <div class="auto-option" data-value="cng.png">
+        <img src="cng.png" alt="CNG Variant">
+        <p data-key="variantCNG">CNG</p>
+    </div>
+    <div class="auto-option" data-value="kotta.png">
+        <img src="kotta.png" alt="Goods Variant">
+        <p data-key="variantGoods">Goods</p>
+    </div>
+</div>
             
             <div style="height:15px;"></div>
         </div>
@@ -457,7 +458,7 @@ const langData = {
         fuelPetrol: "Petrol",
         fuelElectric: "Electric",
         selectStand: "Select Stand Location",
-        standBtn: "📍 Stand",
+        standBtn: "📍Find your  stand",
         chooseVariant: "Choose Your Auto Variant:",
         variantCNG: "CNG",
         variantElectric: "Electric",
@@ -622,7 +623,7 @@ const langData = {
         cardFuel: "⛽ ഇന്ധനം: ",
         cardShift: "🕒 ഷിഫ്റ്റ്‌: ",
         cardPlate: "🚕 നമ്പർ പ്ലേറ്റ്: ",
-        cardHub: "📍 സ്റ്റാൻഡ്: ",
+        cardHub: "📍 നിങ്ങളുടെ അടുത്ത സ്റ്റാൻഡ്: ",
         cardCall: "📞 വിളിക്കുക",
         gpsErrSupport: "നിങ്ങളുടെ ബ്രൗസറിൽ ജിപിഎസ് സംവിധാനം ലഭ്യമല്ല.",
         gpsErrFetch: "നിങ്ങളുടെ ലൊക്കേഷൻ കണ്ടെത്താൻ കഴിഞ്ഞില്ല. ദയവായി സ്വയം തിരഞ്ഞെടുക്കുക.",
@@ -904,6 +905,33 @@ autoOptions.forEach(opt => {
         autoOptions.forEach(o => o.classList.remove("selected"));
         opt.classList.add("selected");
         selectedAutoImage = opt.getAttribute("data-value");
+    });
+});
+// Automatically update auto type select UI variant on fuel choice changes
+document.getElementById("fuel").addEventListener("change", (e) => {
+    const chosenFuel = e.target.value;
+    let targetImg = "";
+
+    if (chosenFuel === "Diesel") {
+        targetImg = "kutti.png";
+    } else if (chosenFuel === "Electric") {
+        targetImg = "karand.png";
+    } else if (chosenFuel === "CNG") {
+        targetImg = "cng.png";
+    } else if (chosenFuel === "Petrol") {
+        // Removes selection visibility if Petrol is chosen
+        autoOptions.forEach(o => o.classList.remove("selected"));
+        selectedAutoImage = "";
+        return;
+    }
+
+    // Find and trigger the highlight logic for the matching option element block
+    autoOptions.forEach(opt => {
+        if (opt.getAttribute("data-value") === targetImg) {
+            autoOptions.forEach(o => o.classList.remove("selected"));
+            opt.classList.add("selected");
+            selectedAutoImage = targetImg;
+        }
     });
 });
 
