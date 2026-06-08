@@ -6,6 +6,85 @@
     <title>HeyAuto!</title>
     <link rel="stylesheet" href="index.css">
     <style>
+        /* --- CUSTOM SEARCHABLE DROPDOWN LAYOUT --- */
+.location-container {
+
+    display: inline-block !important;
+    gap: 10px;
+    align-items: center;
+}
+
+.searchable-dropdown {
+    position: relative;
+    flex: 1;
+}
+
+.searchable-dropdown input[type="text"] {
+    margin-top: 20px;
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 15px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    background: rgba(18, 18, 22, 0.75);
+    backdrop-filter: blur(12px);
+    color: white;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.searchable-dropdown input[type="text"]:focus {
+    border-color: #FFC107;
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.3);
+}
+
+.dropdown-list {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background: rgba(18, 18, 22, 0.95);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 193, 7, 0.4);
+    border-radius: 12px;
+    max-height: 220px;
+    overflow-y: auto;
+    z-index: 999;
+    display: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+}
+
+/* Custom Scrollbar */
+.dropdown-list::-webkit-scrollbar {
+    width: 6px;
+}
+.dropdown-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+.dropdown-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 193, 7, 0.4);
+    border-radius: 4px;
+}
+.dropdown-list::-webkit-scrollbar-thumb:hover {
+    background: #FFC107;
+}
+
+.dropdown-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    color: #e0e0e0;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 193, 7, 0.15);
+    color: #FFC107;
+    padding-left: 20px;
+}
         /* Top navbar layout for Language Selector */
         .top-navbar {
             display: flex;
@@ -77,59 +156,60 @@
                                                                                 
 <div id="customerPage" class="active-view">
     <div class="location-container">
-          <button id="gpsBtn" class="gps-btn" title="Find nearest location" data-key="nearMe">📍 Near Me</button>
-        <select id="location">
+    <button id="gpsBtn" class="gps-btn" title="Find nearest location" data-key="nearMe">📍 Near Me</button>
+    <div class="searchable-dropdown">
+        <input type="text" id="locationSearch" placeholder="Search or Select a Place..." autocomplete="off">
+        <select id="location" style="display: none;">
             <option value="" disabled selected data-key="selectPlace">Select a Place</option>
-                      <button id="gpsBtn" class="gps-btn" title="Find nearest location" data-key="nearMe">📍 Near Me</button>
+            <option value="Anakkayam" data-key="locAnakkayam">Anakkayam</option>
+            <option value="Angadipuram" data-key="locAngadipuram">Angadipuram</option>
+            <option value="Areekode" data-key="locAreekode">Areekode</option>
+            <option value="Cheekode" data-key="locCheekode">Cheekode</option>
+            <option value="Chemmad" data-key="locChemmad">Chemmad</option>
+            <option value="Cherukavu" data-key="locCherukavu">Cherukavu</option>
+            <option value="Edavanna" data-key="locEdavanna">Edavanna</option>
+            <option value="Elamkulam" data-key="locElamkulam">Elamkulam</option>
+            <option value="Kalikavu" data-key="locKalikavu">Kalikavu</option>
+            <option value="Karuvarakundu" data-key="locKaruvarakundu">Karuvarakundu</option>
+            <option value="Kavanur" data-key="locKavanur">Kavanur</option>
+            <option value="Kizhisseri" data-key="locKizhissery">Kizhisseri</option>
+            <option value="Kodur" data-key="locKodur">Kodur</option>
             <option value="Kondotty" data-key="locKondotty">Kondotty</option>
-            <option value="Manjeri" data-key="locManjeri">Manjeri</option>
-            <option value="Malappuram" data-key="locMalappuram">Malappuram</option>
-            <option value="Perinthalmanna" data-key="locPerinthalmanna">Perinthalmanna</option>
-            <option value="Tirur" data-key="locTirur">Tirur</option>
             <option value="Kottakkal" data-key="locKottakkal">Kottakkal</option>
-            <option value="Nilambur" data-key="locNilambur">Nilambur</option>
-            <option value="Ponnani" data-key="locPonnani">Ponnani</option>
-            <option value="Valanchery" data-key="locValanchery">Valanchery</option>
-            <option value="Parappanangadi" data-key="locParappanangadi">Parappanangadi</option>
-            <option value="Tanur" data-key="locTanur">Tanur</option>
-            <option value="Tirurangadi" data-key="locTirurangadi">Tirurangadi</option>
-                        <option value="Ramanatukara" data-key="locRamanatukara">Ramanatukara</option>
-            <option value="Kizhissery" data-key="locKizhissery">Kizhisseri</option>
-            <option value="Pulikkal" data-key="locPulikkal">Pulikkal</option>
+            <option value="Kuttippuram" data-key="locKuttippuram">Kuttippuram</option>
+            <option value="Malappuram" data-key="locMalappuram">Malappuram</option>
+            <option value="Mampad" data-key="locMampad">Mampad</option>
+            <option value="Manjeri" data-key="locManjeri">Manjeri</option>
+            <option value="Melattur" data-key="locMelattur">Melattur</option>
             <option value="Mongam" data-key="locMongam">Mongam</option>
+            <option value="Morayur" data-key="locMorayur">Morayur</option>
+            <option value="Nediyiruppu" data-key="locNediyiruppu">Nediyiruppu</option>
+            <option value="Nilambur" data-key="locNilambur">Nilambur</option>
+            <option value="Othukkungal" data-key="locOthukkungal">Othukkungal</option>
+            <option value="Pandikkad" data-key="locPandikkad">Pandikkad</option>
+            <option value="Parappanangadi" data-key="locParappanangadi">Parappanangadi</option>
+            <option value="Parappur" data-key="locParappur">Parappur</option>
+            <option value="Perinthalmanna" data-key="locPerinthalmanna">Perinthalmanna</option>
+            <option value="Peruvallur" data-key="locPeruvallur">Peruvallur</option>
+            <option value="Ponnani" data-key="locPonnani">Ponnani</option>
+            <option value="Pookkottur" data-key="locPookkottur">Pookkottur</option>
+            <option value="Pulikkal" data-key="locPulikkal">Pulikkal</option>
+            <option value="Ramanatukara" data-key="locRamanatukara">Ramanatukara</option>
+            <option value="Tanur" data-key="locTanur">Tanur</option>
+            <option value="Thenhipalam" data-key="locThenhipalam">Thenhipalam</option>
+            <option value="Thirunavaya" data-key="locThirunavaya">Thirunavaya</option>
+            <option value="Tirur" data-key="locTirur">Tirur</option>
+            <option value="Tirurangadi" data-key="locTirurangadi">Tirurangadi</option>
+            <option value="Valanchery" data-key="locValanchery">Valanchery</option>
+            <option value="Valavannur" data-key="locValavannur">Valavannur</option>
             <option value="Vazhakkad" data-key="locVazhakkad">Vazhakkad</option>
             <option value="Vazhayoor" data-key="locVazhayoor">Vazhayoor</option>
-            <option value="Cheekode" data-key="locCheekode">Cheekode</option>
-            <option value="Cherukavu" data-key="locCherukavu">Cherukavu</option>
-            <option value="Nediyiruppu" data-key="locNediyiruppu">Nediyiruppu</option>
-            <option value="Morayur" data-key="locMorayur">Morayur</option>
-            <option value="Kavanur" data-key="locKavanur">Kavanur</option>
-            <option value="Areekode" data-key="locAreekode">Areekode</option>
-            <option value="Edavanna" data-key="locEdavanna">Edavanna</option>
-
-            <option value="Pandikkad" data-key="locPandikkad">Pandikkad</option>
-            <option value="Wandoor" data-key="locWandoor">Wandoor</option>
-            <option value="Karuvarakundu" data-key="locKaruvarakundu">Karuvarakundu</option>
             <option value="Vengara" data-key="locVengara">Vengara</option>
-            <option value="Chemmad" data-key="locChemmad">Chemmad</option>
-            <option value="Kalikavu" data-key="locKalikavu">Kalikavu</option>
-            <option value="Mampad" data-key="locMampad">Mampad</option>
-            <option value="Melattur" data-key="locMelattur">Melattur</option>
-            <option value="Angadipuram" data-key="locAngadipuram">Angadipuram</option>
-            <option value="Thirunavaya" data-key="locThirunavaya">Thirunavaya</option>
-            <option value="Kuttippuram" data-key="locKuttippuram">Kuttippuram</option>
-            <option value="Valavannur" data-key="locValavannur">Valavannur</option>
-            <option value="Othukkungal" data-key="locOthukkungal">Othukkungal</option>
-            <option value="Parappur" data-key="locParappur">Parappur</option>
-            <option value="Kodur" data-key="locKodur">Kodur</option>
-            <option value="Pookkottur" data-key="locPookkottur">Pookkottur</option>
-            <option value="Anakkayam" data-key="locAnakkayam">Anakkayam</option>
-            <option value="Elamkulam" data-key="locElamkulam">Elamkulam</option>
-            <option value="Peruvallur" data-key="locPeruvallur">Peruvallur</option>
-            <option value="Thenhipalam" data-key="locThenhipalam">Thenhipalam</option>
+            <option value="Wandoor" data-key="locWandoor">Wandoor</option>
         </select>
-      
+        <div class="dropdown-list" id="customerDropdownList"></div>
     </div>
+</div>
 
     <div class="app">
         <div class="appi">
@@ -210,63 +290,61 @@
                 <option value="Electric" data-key="fuelElectric">Electric</option>
             </select>
             <div class="error" id="fuelError"></div>
-
-            <div class="location-container">
-                <button id="driverGpsBtn" type="button" class="gps-btn" title="Detect current stand location" data-key="standBtn">📍 Stand</button>
-                <select id="place">
-                 <option value="">Select a Place</option>
-
-<!-- Municipalities -->
-<option value="Kondotty">Kondotty</option>
-<option value="Manjeri">Manjeri</option>
-<option value="Malappuram">Malappuram</option>
-<option value="Perinthalmanna">Perinthalmanna</option>
-<option value="Tirur">Tirur</option>
-<option value="Kottakkal">Kottakkal</option>
-<option value="Nilambur">Nilambur</option>
-<option value="Ponnani">Ponnani</option>
-<option value="Valanchery">Valanchery</option>
-<option value="Parappanangadi">Parappanangadi</option>
-<option value="Tanur">Tanur</option>
-<option value="Tirurangadi">Tirurangadi</option>
-
-<!-- Kondotty Area -->
-<option value="Kizhissery">Kizhisseri</option>
-<option value="Pulikkal">Pulikkal</option>
-<option value="Mongam">Mongam</option>
-<option value="Vazhakkad">Vazhakkad</option>
-<option value="Vazhayoor">Vazhayoor</option>
-<option value="Cheekode">Cheekode</option>
-<option value="Cherukavu">Cherukavu</option>
-<option value="Nediyiruppu">Nediyiruppu</option>
-<option value="Morayur">Morayur</option>
-<option value="Kavanur">Kavanur</option>
-<option value="Areekode">Areekode</option>
-<option value="Edavanna">Edavanna</option>
-
-<!-- Additional Popular Places -->
-<option value="Pandikkad">Pandikkad</option>
-<option value="Wandoor">Wandoor</option>
-<option value="Karuvarakundu">Karuvarakundu</option>
-<option value="Vengara">Vengara</option>
-<option value="Chemmad">Chemmad</option>
-<option value="Kalikavu">Kalikavu</option>
-<option value="Mampad">Mampad</option>
-<option value="Melattur">Melattur</option>
-<option value="Angadipuram">Angadipuram</option>
-<option value="Thirunavaya">Thirunavaya</option>
-<option value="Kuttippuram">Kuttippuram</option>
-<option value="Valavannur">Valavannur</option>
-<option value="Othukkungal">Othukkungal</option>
-<option value="Parappur">Parappur</option>
-<option value="Kodur">Kodur</option>
-<option value="Pookkottur">Pookkottur</option>
-<option value="Anakkayam">Anakkayam</option>
-<option value="Elamkulam">Elamkulam</option>
-<option value="Peruvallur">Peruvallur</option>
-<option value="Thenhipalam">Thenhipalam</option> </select>
-                
-            </div>
+<div class="location-container">
+    <button id="driverGpsBtn" type="button" class="gps-btn" title="Detect current stand location" data-key="standBtn">📍 Stand</button>
+    <div class="searchable-dropdown">
+        <input type="text" id="placeSearch" placeholder="Search or Select your Stand..." autocomplete="off">
+        <select id="place" style="display: none;">
+            <option value="">Select a Place</option>
+            <option value="Anakkayam">Anakkayam</option>
+            <option value="Angadipuram">Angadipuram</option>
+            <option value="Areekode">Areekode</option>
+            <option value="Cheekode">Cheekode</option>
+            <option value="Chemmad">Chemmad</option>
+            <option value="Cherukavu">Cherukavu</option>
+            <option value="Edavanna">Edavanna</option>
+            <option value="Elamkulam">Elamkulam</option>
+            <option value="Kalikavu">Kalikavu</option>
+            <option value="Karuvarakundu">Karuvarakundu</option>
+            <option value="Kavanur">Kavanur</option>
+            <option value="Kizhisseri">Kizhisseri</option>
+            <option value="Kodur">Kodur</option>
+            <option value="Kondotty">Kondotty</option>
+            <option value="Kottakkal">Kottakkal</option>
+            <option value="Kuttippuram">Kuttippuram</option>
+            <option value="Malappuram">Malappuram</option>
+            <option value="Mampad">Mampad</option>
+            <option value="Manjeri">Manjeri</option>
+            <option value="Melattur">Melattur</option>
+            <option value="Mongam">Mongam</option>
+            <option value="Morayur">Morayur</option>
+            <option value="Nediyiruppu">Nediyiruppu</option>
+            <option value="Nilambur">Nilambur</option>
+            <option value="Othukkungal">Othukkungal</option>
+            <option value="Pandikkad">Pandikkad</option>
+            <option value="Parappanangadi">Parappanangadi</option>
+            <option value="Parappur">Parappur</option>
+            <option value="Perinthalmanna">Perinthalmanna</option>
+            <option value="Peruvallur">Peruvallur</option>
+            <option value="Ponnani">Ponnani</option>
+            <option value="Pookkottur">Pookkottur</option>
+            <option value="Pulikkal">Pulikkal</option>
+            <option value="Ramanatukara">Ramanatukara</option>
+            <option value="Tanur">Tanur</option>
+            <option value="Thenhipalam">Thenhipalam</option>
+            <option value="Thirunavaya">Thirunavaya</option>
+            <option value="Tirur">Tirur</option>
+            <option value="Tirurangadi">Tirurangadi</option>
+            <option value="Valanchery">Valanchery</option>
+            <option value="Valavannur">Valavannur</option>
+            <option value="Vazhakkad">Vazhakkad</option>
+            <option value="Vazhayoor">Vazhayoor</option>
+            <option value="Vengara">Vengara</option>
+            <option value="Wandoor">Wandoor</option>
+        </select>
+        <div class="dropdown-list" id="driverDropdownList"></div>
+    </div>
+</div>
             
           <span class="auto-selector-label" data-key="chooseVariant">Choose Your Auto Variant:</span>
 <div class="auto-selector" id="autoSelectorContainer">
@@ -525,7 +603,7 @@ const langData = {
         locKondotty: "Kondotty", locManjeri: "Manjeri", locMalappuram: "Malappuram", locPerinthalmanna: "Perinthalmanna",
         locTirur: "Tirur", locKottakkal: "Kottakkal", locNilambur: "Nilambur", locPonnani: "Ponnani",
         locValanchery: "Valanchery", locParappanangadi: "Parappanangadi", locTanur: "Tanur", locTirurangadi: "Tirurangadi",
-        locKizhissery: "Kizhissery", locPulikkal: "Pulikkal", locMongam: "Mongam", locVazhakkad: "Vazhakkad",
+        locKizhissery: "Kizhisseri", locPulikkal: "Pulikkal", locMongam: "Mongam", locVazhakkad: "Vazhakkad",
         locVazhayoor: "Vazhayoor", locCheekode: "Cheekode", locCherukavu: "Cherukavu", locNediyiruppu: "Nediyiruppu",locRamanatukara:"Ramanatukara",
 
         
@@ -778,7 +856,7 @@ const hubCoordinates = [
     { name: "Tirurangadi", lat: 11.0425, lng: 75.9281 },
 
     // Kondotty Area
-    { name: "Kizhissery", lat: 11.1833, lng: 76.0167 },
+    { name: "Kizhisseri", lat: 11.1833, lng: 76.0167 },
     { name: "Pulikkal", lat: 11.1632, lng: 75.9272 },
     { name: "Mongam", lat: 11.1345, lng: 75.9612 },
     { name: "Vazhakkad", lat: 11.2332, lng: 75.9547 },
@@ -1465,7 +1543,80 @@ window.addEventListener("click", (e) => {
     if (e.target === termsModal) termsModal.style.display = "none";
     if (e.target === editProfileModal) editProfileModal.style.display = "none";
 });
+// ================= SEARCHABLE DROPDOWNS CODE =================
+function setupSearchableDropdown(selectId, inputId, listId) {
+    const selectEl = document.getElementById(selectId);
+    const inputEl = document.getElementById(inputId);
+    const listEl = document.getElementById(listId);
 
+    // Build lists from existing native elements
+    function populateDropdown() {
+        listEl.innerHTML = "";
+        Array.from(selectEl.options).forEach(option => {
+            if (option.value === "" && option.disabled) return; // Skip placeholder
+            
+            const item = document.createElement("div");
+            item.className = "dropdown-item";
+            item.textContent = option.textContent;
+            item.dataset.value = option.value;
+            
+            item.addEventListener("click", () => {
+                selectEl.value = option.value;
+                inputEl.value = option.textContent;
+                listEl.style.display = "none";
+                
+                // Trigger change event manually so it updates Firebase find filters
+                selectEl.dispatchEvent(new Event('change'));
+            });
+            listEl.appendChild(item);
+        });
+    }
+
+    // Toggle viewport on input click
+    inputEl.addEventListener("click", (e) => {
+        e.stopPropagation();
+        // Hide other open drop menus
+        document.querySelectorAll('.dropdown-list').forEach(l => l.style.display = 'none');
+        populateDropdown();
+        listEl.style.display = "block";
+    });
+
+    // Real-time filtering engine
+    inputEl.addEventListener("input", () => {
+        const query = inputEl.value.toLowerCase().trim();
+        const items = listEl.querySelectorAll(".dropdown-item");
+        let visibleCount = 0;
+
+        items.forEach(item => {
+            if (item.textContent.toLowerCase().includes(query)) {
+                item.style.display = "block";
+                visibleCount++;
+            } else {
+                item.style.display = "none";
+            }
+        });
+        listEl.style.display = "block";
+    });
+
+    // Mirror native mutations (like GPS location setting updates)
+    selectEl.addEventListener("change", () => {
+        const selectedOpt = selectEl.options[selectEl.selectedIndex];
+        if(selectedOpt) {
+            inputEl.value = selectedOpt.text;
+        }
+    });
+}
+
+// Instantiate setups for Passenger and Driver Registration hubs
+setupSearchableDropdown("location", "locationSearch", "customerDropdownList");
+setupSearchableDropdown("place", "placeSearch", "driverDropdownList");
+
+// Close custom lists when interacting outside dropdown nodes
+window.addEventListener("click", () => {
+    document.querySelectorAll(".dropdown-list").forEach(list => {
+        list.style.display = "none";
+    });
+});
 </script>
 </body>
 </html>
